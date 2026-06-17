@@ -95,6 +95,7 @@
   ];
 
   var styleTabs = document.querySelectorAll('.decoration-styles__tab');
+  var styleSelect = document.getElementById('style-select');
   var styleImage = document.getElementById('style-image');
   var styleTitle = document.getElementById('style-title');
   var styleDesc = document.getElementById('style-desc');
@@ -102,7 +103,16 @@
   var stylePanel = document.getElementById('style-panel');
   var styleContent = document.querySelector('.decoration-styles__content');
 
-  if (styleTabs.length && styleImage && styleDesc && styleFeatures) {
+  if (styleImage && styleDesc && styleFeatures && (styleTabs.length || styleSelect)) {
+    if (styleSelect) {
+      styleData.forEach(function (data, i) {
+        var option = document.createElement('option');
+        option.value = String(i);
+        option.textContent = data.title;
+        styleSelect.appendChild(option);
+      });
+    }
+
     function setActiveStyle(index) {
       var data = styleData[index];
       if (!data) return;
@@ -112,6 +122,10 @@
         tab.classList.toggle('decoration-styles__tab--active', isActive);
         tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
       });
+
+      if (styleSelect) {
+        styleSelect.value = String(index);
+      }
 
       stylePanel.setAttribute('aria-labelledby', 'style-tab-' + index);
 
@@ -149,6 +163,12 @@
         setActiveStyle(Number(tab.dataset.index));
       });
     });
+
+    if (styleSelect) {
+      styleSelect.addEventListener('change', function () {
+        setActiveStyle(Number(styleSelect.value));
+      });
+    }
   }
 
   var speciesSlider = document.getElementById('species-slider');
