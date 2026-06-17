@@ -7,7 +7,7 @@
   <meta name="description" content="Проектируем, изготавливаем, оформляем, устанавливаем и обслуживаем аквариумы для квартир, домов, офисов и ресторанов в Беларуси.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -16,24 +16,7 @@
   <header class="header" id="header">
     <div class="container header__inner">
       <a href="#" class="header__logo">
-        <span class="header__logo-icon" aria-hidden="true">
-          <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="36" height="36" rx="8" fill="url(#logoGrad)"/>
-            <path d="M8 22C8 22 11 14 18 14C25 14 28 22 28 22" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
-            <path d="M10 24C10 24 13 18 18 18C23 18 26 24 26 24" stroke="#fff" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/>
-            <circle cx="22" cy="16" r="1.5" fill="#fff" opacity="0.8"/>
-            <defs>
-              <linearGradient id="logoGrad" x1="0" y1="0" x2="36" y2="36">
-                <stop stop-color="#f07820"/>
-                <stop offset="1" stop-color="#c45a10"/>
-              </linearGradient>
-            </defs>
-          </svg>
-        </span>
-        <span class="header__logo-text">
-          <span class="header__logo-line">Aqua Design</span>
-          <span class="header__logo-line">Technology</span>
-        </span>
+        <img src="img/logo.svg" alt="Aqua Design Technology" class="header__logo-img" width="160" height="40">
       </a>
 
       <nav class="header__nav" id="nav">
@@ -45,15 +28,27 @@
           <li><a href="#request" class="header__link">Заявка</a></li>
         </ul>
         <div class="header__actions header__actions--mobile">
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--sm">Instagram</a>
-          <a href="https://aquadt.by" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--sm">Основной сайт</a>
+          <div class="header__icons">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="header__icon-link" aria-label="Instagram">
+              <img src="img/inst.svg" alt="" width="24" height="24" aria-hidden="true">
+            </a>
+            <a href="https://aquadt.by" target="_blank" rel="noopener noreferrer" class="header__icon-link" aria-label="Основной сайт">
+              <img src="img/site.svg" alt="" width="24" height="24" aria-hidden="true">
+            </a>
+          </div>
           <a href="#request" class="btn btn--primary btn--sm">Получить консультацию</a>
         </div>
       </nav>
 
       <div class="header__actions header__actions--desktop">
-        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--sm">Instagram</a>
-        <a href="https://aquadt.by" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--sm">Основной сайт</a>
+        <div class="header__icons">
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="header__icon-link" aria-label="Instagram">
+            <img src="img/inst.svg" alt="" width="24" height="24" aria-hidden="true">
+          </a>
+          <a href="https://aquadt.by" target="_blank" rel="noopener noreferrer" class="header__icon-link" aria-label="Основной сайт">
+            <img src="img/site.svg" alt="" width="24" height="24" aria-hidden="true">
+          </a>
+        </div>
         <a href="#request" class="btn btn--primary btn--sm">Получить консультацию</a>
       </div>
 
@@ -67,137 +62,128 @@
 
   <!-- Hero -->
   <section class="hero" id="hero">
-    <div class="hero__ambient" aria-hidden="true">
-      <span class="hero__orb hero__orb--1"></span>
-      <span class="hero__orb hero__orb--2"></span>
-      <span class="hero__orb hero__orb--3"></span>
+    <div class="hero__bg" aria-hidden="true">
+      <img src="img/back2.jpg" alt="" class="hero__bg-image" loading="eager" fetchpriority="high">
+      <div class="hero__bg-overlay"></div>
     </div>
 
     <div class="container hero__inner">
       <div class="hero__content">
         <h1 class="hero__title">
-          <span class="hero__title-line">Аквариумы <span class="hero__title-accent">под ключ</span></span>
-          <span class="hero__title-line">для интерьеров <span class="hero__title-accent">в&nbsp;Беларуси</span></span>
+          Аквариумы <em>под ключ</em><br>
+          для интерьеров <em>в&nbsp;Беларуси</em>
         </h1>
+
         <p class="hero__subtitle">
           Проектируем, изготавливаем, оформляем, устанавливаем и&nbsp;обслуживаем аквариумы для квартир, домов, офисов, ресторанов и&nbsp;коммерческих пространств.
         </p>
 
         <div class="hero__cta">
-          <a href="#request" class="btn btn--primary btn--lg">
+          <a href="#request" class="btn btn--primary btn--lg hero__btn">
             <span>Рассчитать стоимость</span>
           </a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--lg">
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--lg hero__btn hero__btn--glass">
+            <img src="img/inst.svg" alt="" class="btn__icon" width="22" height="22" aria-hidden="true">
             Смотреть работы в Instagram
           </a>
         </div>
-
-        <ul class="hero__features">
-          <li class="hero__feature">
-            <span class="hero__feature-icon" aria-hidden="true">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
-                <path d="M12 21C12 21 19 14.5 19 9.5C19 5.91 16.09 3 12.5 3C8.91 3 6 5.91 6 9.5C6 14.5 12 21 12 21Z" stroke="currentColor" stroke-width="1.5"/>
-                <circle cx="12" cy="9.5" r="2.5" stroke="currentColor" stroke-width="1.5"/>
-              </svg>
-            </span>
-            <span class="hero__feature-text">Работаем по Минску и&nbsp;всей Беларуси</span>
-          </li>
-          <li class="hero__feature">
-            <span class="hero__feature-icon" aria-hidden="true">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
-                <path d="M12 20H21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                <path d="M16.5 3.5C17.3284 2.67157 18.6716 2.67157 19.5 3.5C20.3284 4.32843 20.3284 5.67157 19.5 6.5L7 19L3 20L4 16L16.5 3.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-              </svg>
-            </span>
-            <span class="hero__feature-text">Индивидуальное проектирование</span>
-          </li>
-          <li class="hero__feature">
-            <span class="hero__feature-icon" aria-hidden="true">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
-                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/>
-                <path d="M12 1V4M12 20V23M4.22 4.22L6.34 6.34M17.66 17.66L19.78 19.78M1 12H4M20 12H23M4.22 19.78L6.34 17.66M17.66 6.34L19.78 4.22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-              </svg>
-            </span>
-            <span class="hero__feature-text">Оформление и&nbsp;обслуживание под ключ</span>
-          </li>
-        </ul>
       </div>
 
-      <div class="hero__visual">
-        <div class="hero__visual-glow" aria-hidden="true"></div>
-        <div class="hero__image-frame">
-          <div class="hero__image-wrap">
-            <img src="img/back2.jpg" alt="Интерьер с аквариумом" class="hero__image" loading="eager">
-          </div>
-          <div class="hero__image-shine" aria-hidden="true"></div>
-        </div>
-      </div>
+      <ul class="hero__features">
+        <li class="hero__feature">
+          <span class="hero__feature-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M12 21C12 21 19 14.5 19 9.5C19 5.91 16.09 3 12.5 3C8.91 3 6 5.91 6 9.5C6 14.5 12 21 12 21Z" stroke="currentColor" stroke-width="1.5"/>
+              <circle cx="12" cy="9.5" r="2.5" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+          </span>
+          <span class="hero__feature-text">Работаем по Минску и&nbsp;всей Беларуси</span>
+        </li>
+        <li class="hero__feature">
+          <span class="hero__feature-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M12 20H21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M16.5 3.5C17.3284 2.67157 18.6716 2.67157 19.5 3.5C20.3284 4.32843 20.3284 5.67157 19.5 6.5L7 19L3 20L4 16L16.5 3.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span class="hero__feature-text">Индивидуальное проектирование</span>
+        </li>
+        <li class="hero__feature">
+          <span class="hero__feature-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M12 1V4M12 20V23M4.22 4.22L6.34 6.34M17.66 17.66L19.78 19.78M1 12H4M20 12H23M4.22 19.78L6.34 17.66M17.66 6.34L19.78 4.22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span class="hero__feature-text">Оформление и&nbsp;обслуживание под ключ</span>
+        </li>
+      </ul>
     </div>
   </section>
 
   <!-- What we do -->
-  <section class="services" id="stages">
+  <section class="services" id="what-we-do">
     <div class="container">
       <div class="services__header">
         <h2 class="services__title">Что мы делаем</h2>
-        <p class="services__subtitle">Полный цикл работ — от идеи до стабильной и красивой экосистемы.</p>
+        <p class="services__subtitle">Полный цикл работ&nbsp;— от&nbsp;идеи до&nbsp;стабильной и&nbsp;красивой экосистемы.</p>
       </div>
 
       <ul class="services__grid">
-        <li class="services__card">
+        <li class="services__item">
+          <span class="services__num">01</span>
           <span class="services__icon" aria-hidden="true">
-            <img src="img/whatweared/1.svg" alt="" width="36" height="36">
+            <img src="img/whatweared/1.svg" alt="" width="32" height="32">
           </span>
-          <span class="services__num">1</span>
           <span class="services__label">Консультация</span>
         </li>
-        <li class="services__card">
+        <li class="services__item">
+          <span class="services__num">02</span>
           <span class="services__icon" aria-hidden="true">
-            <img src="img/whatweared/2.svg" alt="" width="36" height="36">
+            <img src="img/whatweared/2.svg" alt="" width="32" height="32">
           </span>
-          <span class="services__num">2</span>
           <span class="services__label">Проектирование</span>
         </li>
-        <li class="services__card">
+        <li class="services__item">
+          <span class="services__num">03</span>
           <span class="services__icon" aria-hidden="true">
-            <img src="img/whatweared/3.svg" alt="" width="36" height="36">
+            <img src="img/whatweared/3.svg" alt="" width="32" height="32">
           </span>
-          <span class="services__num">3</span>
           <span class="services__label">Изготовление</span>
         </li>
-        <li class="services__card">
+        <li class="services__item">
+          <span class="services__num">04</span>
           <span class="services__icon" aria-hidden="true">
-            <img src="img/whatweared/4.svg" alt="" width="36" height="36">
+            <img src="img/whatweared/4.svg" alt="" width="32" height="32">
           </span>
-          <span class="services__num">4</span>
           <span class="services__label">Подбор оборудования</span>
         </li>
-        <li class="services__card">
+        <li class="services__item">
+          <span class="services__num">05</span>
           <span class="services__icon" aria-hidden="true">
-            <img src="img/whatweared/5.svg" alt="" width="36" height="36">
+            <img src="img/whatweared/5.svg" alt="" width="32" height="32">
           </span>
-          <span class="services__num">5</span>
           <span class="services__label">Оформление акваскейпа</span>
         </li>
-        <li class="services__card">
+        <li class="services__item">
+          <span class="services__num">06</span>
           <span class="services__icon" aria-hidden="true">
-            <img src="img/whatweared/6.svg" alt="" width="36" height="36">
+            <img src="img/whatweared/6.svg" alt="" width="32" height="32">
           </span>
-          <span class="services__num">6</span>
           <span class="services__label">Подбор рыб и&nbsp;растений</span>
         </li>
-        <li class="services__card">
+        <li class="services__item">
+          <span class="services__num">07</span>
           <span class="services__icon" aria-hidden="true">
-            <img src="img/whatweared/7.svg" alt="" width="36" height="36">
+            <img src="img/whatweared/7.svg" alt="" width="32" height="32">
           </span>
-          <span class="services__num">7</span>
           <span class="services__label">Доставка и&nbsp;установка</span>
         </li>
-        <li class="services__card">
+        <li class="services__item">
+          <span class="services__num">08</span>
           <span class="services__icon" aria-hidden="true">
-            <img src="img/whatweared/8.svg" alt="" width="36" height="36">
+            <img src="img/whatweared/8.svg" alt="" width="32" height="32">
           </span>
-          <span class="services__num">8</span>
           <span class="services__label">Запуск и&nbsp;обслуживание</span>
         </li>
       </ul>
@@ -206,48 +192,51 @@
 
   <!-- Custom aquarium -->
   <section class="custom-order" id="aquariums">
-    <div class="container">
-      <div class="custom-order__inner">
-        <div class="custom-order__content">
-          <h2 class="custom-order__title">Аквариум под заказ</h2>
-          <p class="custom-order__intro">
-            Мы создаём аквариумы, которые идеально подходят под ваш интерьер и&nbsp;образ жизни. Это не&nbsp;просто покупка ёмкости&nbsp;— комплексный интерьерный проект от&nbsp;идеи до&nbsp;запуска.
-          </p>
-          <ul class="custom-order__list">
-            <li>Нестандартные размеры</li>
-            <li>Необычные формы</li>
-            <li>Точная интеграция в&nbsp;интерьер</li>
-            <li>Встраивание в&nbsp;стену, мебель, нишу или коммерческое пространство</li>
-            <li>Подбор оформления под стиль помещения</li>
-            <li>Полный цикл работ «под ключ»</li>
-          </ul>
-          <a href="#request" class="btn btn--primary btn--lg custom-order__cta">Обсудить проект</a>
-        </div>
-        <div class="custom-order__visual">
-          <img
-            src="img/order.jpg"
-            alt="Аквариум как часть интерьера"
-            class="custom-order__image"
-            loading="lazy"
-            width="720"
-            height="540"
-          >
-        </div>
+    <div class="custom-order__inner">
+      <div class="custom-order__content">
+        <h2 class="custom-order__title">Аквариум <em>под заказ</em></h2>
+        <p class="custom-order__intro">
+          Мы создаём аквариумы, которые идеально подходят под ваш интерьер и&nbsp;образ жизни. Это не&nbsp;просто покупка ёмкости&nbsp;— комплексный интерьерный проект от&nbsp;идеи до&nbsp;запуска.
+        </p>
+        <ul class="custom-order__list">
+          <li>Нестандартные размеры</li>
+          <li>Необычные формы</li>
+          <li>Точная интеграция в&nbsp;интерьер</li>
+          <li>Встраивание в&nbsp;стену, мебель, нишу или коммерческое пространство</li>
+          <li>Подбор оформления под стиль помещения</li>
+          <li>Полный цикл работ «под ключ»</li>
+        </ul>
+        <a href="#request" class="btn btn--primary btn--lg custom-order__cta">Обсудить проект</a>
       </div>
+      <img
+        src="img/order.jpg"
+        alt="Аквариум как часть интерьера"
+        class="custom-order__image"
+        loading="lazy"
+        width="720"
+        height="540"
+      >
     </div>
   </section>
 
   <!-- Aquarium types -->
   <section class="species" id="aquarium-types">
-    <div class="container species__header-wrap">
+    <div class="container">
       <div class="species__header">
         <h2 class="species__title">Виды аквариумов</h2>
         <p class="species__subtitle">Разные форматы и&nbsp;решения для любых интерьеров и&nbsp;задач.</p>
       </div>
-    </div>
 
-    <div class="species__rows">
-        <ul class="species__row">
+      <div class="species__slider" id="species-slider">
+        <button type="button" class="species__arrow species__arrow--prev" aria-label="Предыдущий вид">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <div class="species__slider-main">
+          <div class="species__viewport">
+            <ul class="species__track" id="species-track">
           <li class="species__card">
             <div class="species__image-wrap">
               <img src="img/species/1.jpg" alt="Морской аквариум" class="species__image" loading="lazy" width="320" height="200">
@@ -308,9 +297,6 @@
               <a href="#request" class="btn btn--outline species__cta">Обсудить такой аквариум</a>
             </div>
           </li>
-        </ul>
-
-        <ul class="species__row species__row--centered">
           <li class="species__card">
             <div class="species__image-wrap">
               <img src="img/species/5.jpg" alt="Японский аквариум с живыми растениями" class="species__image" loading="lazy" width="320" height="200">
@@ -356,8 +342,18 @@
               <a href="#request" class="btn btn--outline species__cta">Обсудить такой аквариум</a>
             </div>
           </li>
-        </ul>
+          </ul>
+          </div>
+          <div class="species__dots" id="species-dots" role="tablist" aria-label="Виды аквариумов"></div>
+        </div>
+
+        <button type="button" class="species__arrow species__arrow--next" aria-label="Следующий вид">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
       </div>
+    </div>
   </section>
 
   <!-- Decoration styles -->
@@ -382,15 +378,16 @@
             <img src="img/styles/1.jpg" alt="Псевдоморе" class="decoration-styles__image" id="style-image" loading="lazy" width="560" height="420">
           </div>
           <div class="decoration-styles__content">
+            <h3 class="decoration-styles__panel-title" id="style-title">Псевдоморе</h3>
             <p class="decoration-styles__desc" id="style-desc">Яркая и&nbsp;декоративная эстетика морского рифа в&nbsp;пресной воде&nbsp;— идеальный баланс между эффектностью и&nbsp;простотой обслуживания.</p>
-            <h3 class="decoration-styles__features-title">Визуальные характеристики:</h3>
+            <p class="decoration-styles__features-title">Визуальные характеристики</p>
             <ul class="decoration-styles__features" id="style-features">
               <li>Яркие рыбки</li>
               <li>Искусственные кораллы</li>
               <li>Светлый декор</li>
               <li>Ощущение тропического рифа</li>
             </ul>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--lg decoration-styles__cta">Посмотреть примеры работ в&nbsp;Instagram</a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--lg decoration-styles__cta"><img src="img/inst.svg" alt="" class="btn__icon" width="22" height="22" aria-hidden="true">Посмотреть примеры работ в&nbsp;Instagram</a>
           </div>
         </div>
       </div>
@@ -402,12 +399,13 @@
     <div class="container">
       <div class="forwho__header">
         <h2 class="forwho__title">Для кого подойдут наши аквариумы</h2>
+        <p class="forwho__subtitle">От&nbsp;квартиры до&nbsp;премиальных пространств&nbsp;— подберём решение под вашу задачу и&nbsp;интерьер.</p>
       </div>
 
       <ul class="forwho__grid">
         <li class="forwho__card">
           <span class="forwho__icon" aria-hidden="true">
-            <img src="img/forwho/1.svg" alt="" width="40" height="40">
+            <img src="img/forwho/1.svg" alt="" width="36" height="36">
           </span>
           <div class="forwho__body">
             <h3 class="forwho__card-title">Квартира</h3>
@@ -416,7 +414,7 @@
         </li>
         <li class="forwho__card">
           <span class="forwho__icon" aria-hidden="true">
-            <img src="img/forwho/2.svg" alt="" width="40" height="40">
+            <img src="img/forwho/2.svg" alt="" width="36" height="36">
           </span>
           <div class="forwho__body">
             <h3 class="forwho__card-title">Частный дом</h3>
@@ -425,7 +423,7 @@
         </li>
         <li class="forwho__card">
           <span class="forwho__icon" aria-hidden="true">
-            <img src="img/forwho/3.svg" alt="" width="40" height="40">
+            <img src="img/forwho/3.svg" alt="" width="36" height="36">
           </span>
           <div class="forwho__body">
             <h3 class="forwho__card-title">Офис</h3>
@@ -434,7 +432,7 @@
         </li>
         <li class="forwho__card">
           <span class="forwho__icon" aria-hidden="true">
-            <img src="img/forwho/4.svg" alt="" width="40" height="40">
+            <img src="img/forwho/4.svg" alt="" width="36" height="36">
           </span>
           <div class="forwho__body">
             <h3 class="forwho__card-title">Ресторан</h3>
@@ -443,7 +441,7 @@
         </li>
         <li class="forwho__card">
           <span class="forwho__icon" aria-hidden="true">
-            <img src="img/forwho/5.svg" alt="" width="40" height="40">
+            <img src="img/forwho/5.svg" alt="" width="36" height="36">
           </span>
           <div class="forwho__body">
             <h3 class="forwho__card-title">Гостиница</h3>
@@ -452,7 +450,7 @@
         </li>
         <li class="forwho__card">
           <span class="forwho__icon" aria-hidden="true">
-            <img src="img/forwho/6.svg" alt="" width="40" height="40">
+            <img src="img/forwho/6.svg" alt="" width="36" height="36">
           </span>
           <div class="forwho__body">
             <h3 class="forwho__card-title">Торговое или административное пространство</h3>
@@ -461,7 +459,7 @@
         </li>
         <li class="forwho__card">
           <span class="forwho__icon" aria-hidden="true">
-            <img src="img/forwho/7.svg" alt="" width="40" height="40">
+            <img src="img/forwho/7.svg" alt="" width="36" height="36">
           </span>
           <div class="forwho__body">
             <h3 class="forwho__card-title">Зона ожидания</h3>
@@ -470,7 +468,7 @@
         </li>
         <li class="forwho__card">
           <span class="forwho__icon" aria-hidden="true">
-            <img src="img/forwho/8.svg" alt="" width="40" height="40">
+            <img src="img/forwho/8.svg" alt="" width="36" height="36">
           </span>
           <div class="forwho__body">
             <h3 class="forwho__card-title">Кабинет руководителя</h3>
@@ -484,96 +482,331 @@
   <!-- Service maintenance -->
   <section class="maintenance" id="service">
     <div class="container">
-      <div class="maintenance__header">
-        <h2 class="maintenance__title">Сервисное обслуживание: мы работаем&nbsp;— вы наслаждаетесь аквариумом</h2>
-        <p class="maintenance__intro">
-          Аквариум&nbsp;— это живая биосистема, которая требует регулярного ухода. Компания берёт на&nbsp;себя обслуживание, чтобы аквариум оставался чистым, здоровым и&nbsp;красивым.
-        </p>
-      </div>
+      <div class="maintenance__layout">
+        <div class="maintenance__main">
+          <div class="maintenance__header">
+            <h2 class="maintenance__title">Сервисное обслуживание: <em>мы работаем&nbsp;— вы наслаждаетесь аквариумом</em></h2>
+            <p class="maintenance__intro">
+              Аквариум&nbsp;— это живая биосистема, которая требует регулярного ухода. Компания берёт на&nbsp;себя обслуживание, чтобы аквариум оставался чистым, здоровым и&nbsp;красивым.
+            </p>
+          </div>
 
-      <h3 class="maintenance__timeline-title">Что входит в&nbsp;обслуживание</h3>
-    </div>
+          <h3 class="maintenance__section-label">Что входит в&nbsp;обслуживание</h3>
+          <ul class="maintenance__services">
+            <li>Подмена воды</li>
+            <li>Чистка стекол</li>
+            <li>Чистка декораций</li>
+            <li>Сифон грунта</li>
+            <li>Проверка оборудования</li>
+            <li>Контроль параметров воды</li>
+            <li>Уход за&nbsp;рыбами и&nbsp;растениями</li>
+            <li>Наблюдение за&nbsp;состоянием биосистемы</li>
+            <li>Разовое или постоянное обслуживание</li>
+            <li>Переоформление аквариума</li>
+            <li>Ремонт аквариумов</li>
+            <li>Доставка рыб, кормов, медикаментов и&nbsp;оборудования</li>
+            <li>Консультации при форс-мажорах</li>
+          </ul>
 
-    <div class="maintenance__timeline-wrap">
-      <ol class="maintenance__timeline">
-          <li class="maintenance__step">
-            <span class="maintenance__circle">1</span>
-            <span class="maintenance__arrow" aria-hidden="true"></span>
-            <span class="maintenance__label">Подмена воды</span>
-          </li>
-          <li class="maintenance__step">
-            <span class="maintenance__circle">2</span>
-            <span class="maintenance__arrow" aria-hidden="true"></span>
-            <span class="maintenance__label">Чистка стекол</span>
-          </li>
-          <li class="maintenance__step">
-            <span class="maintenance__circle">3</span>
-            <span class="maintenance__arrow" aria-hidden="true"></span>
-            <span class="maintenance__label">Чистка декораций</span>
-          </li>
-          <li class="maintenance__step">
-            <span class="maintenance__circle">4</span>
-            <span class="maintenance__arrow" aria-hidden="true"></span>
-            <span class="maintenance__label">Сифон грунта</span>
-          </li>
-          <li class="maintenance__step">
-            <span class="maintenance__circle">5</span>
-            <span class="maintenance__arrow" aria-hidden="true"></span>
-            <span class="maintenance__label">Проверка оборудования</span>
-          </li>
-          <li class="maintenance__step">
-            <span class="maintenance__circle">6</span>
-            <span class="maintenance__arrow" aria-hidden="true"></span>
-            <span class="maintenance__label">Контроль параметров воды</span>
-          </li>
-          <li class="maintenance__step">
-            <span class="maintenance__circle">7</span>
-            <span class="maintenance__arrow" aria-hidden="true"></span>
-            <span class="maintenance__label">Уход за&nbsp;рыбами и&nbsp;растениями</span>
-          </li>
-          <li class="maintenance__step">
-            <span class="maintenance__circle">8</span>
-            <span class="maintenance__arrow" aria-hidden="true"></span>
-            <span class="maintenance__label">Наблюдение за&nbsp;состоянием биосистемы</span>
-          </li>
-          <li class="maintenance__step">
-            <span class="maintenance__circle">9</span>
-            <span class="maintenance__arrow" aria-hidden="true"></span>
-            <span class="maintenance__label">Разовое или постоянное обслуживание</span>
-          </li>
-          <li class="maintenance__step">
-            <span class="maintenance__circle">10</span>
-            <span class="maintenance__arrow" aria-hidden="true"></span>
-            <span class="maintenance__label">Переоформление аквариума</span>
-          </li>
-          <li class="maintenance__step">
-            <span class="maintenance__circle">11</span>
-            <span class="maintenance__arrow" aria-hidden="true"></span>
-            <span class="maintenance__label">Ремонт аквариумов</span>
-          </li>
-          <li class="maintenance__step">
-            <span class="maintenance__circle">12</span>
-            <span class="maintenance__arrow" aria-hidden="true"></span>
-            <span class="maintenance__label">Доставка рыб, кормов, медикаментов и&nbsp;оборудования</span>
-          </li>
-          <li class="maintenance__step">
-            <span class="maintenance__circle">13</span>
-            <span class="maintenance__arrow" aria-hidden="true"></span>
-            <span class="maintenance__label">Консультации при форс-мажорах</span>
-          </li>
-        </ol>
-    </div>
+          <div class="maintenance__cta">
+            <a href="#request" class="btn btn--primary btn--lg">Заказать обслуживание</a>
+            <a href="#request" class="btn btn--outline btn--lg">Получить консультацию по&nbsp;уходу</a>
+          </div>
+        </div>
 
-    <div class="container">
-      <div class="maintenance__cta">
-        <a href="#request" class="btn btn--primary btn--lg">Заказать обслуживание</a>
-        <a href="#request" class="btn btn--outline btn--lg">Получить консультацию по&nbsp;уходу</a>
+        <aside class="maintenance__aside" aria-label="Преимущества сервисного обслуживания">
+          <ul class="maintenance__highlights">
+            <li class="maintenance__highlight">
+              <p class="maintenance__highlight-text">Обслуживание особенно важно для офисов, ресторанов и&nbsp;коммерческих помещений, где аквариум работает на&nbsp;имидж и&nbsp;атмосферу.</p>
+            </li>
+            <li class="maintenance__highlight">
+              <p class="maintenance__highlight-text">Сервис подходит как для аквариумов AquaDT, так и&nbsp;для объектов, сделанных другими компаниями.</p>
+            </li>
+            <li class="maintenance__highlight">
+              <p class="maintenance__highlight-text">Стоимость зависит от&nbsp;объёма, конфигурации, наполнения и&nbsp;режима обслуживания.</p>
+            </li>
+            <li class="maintenance__highlight">
+              <p class="maintenance__highlight-text">Профессиональный уход помогает сохранить внешний вид аквариума и&nbsp;здоровье его обитателей.</p>
+            </li>
+          </ul>
+        </aside>
       </div>
     </div>
   </section>
 
-  <!-- Placeholder sections for nav anchors -->
-  <div id="request" class="section-anchor"></div>
+  <!-- Work stages -->
+  <section class="work-stages" id="stages">
+    <div class="container">
+      <div class="work-stages__header">
+        <h2 class="work-stages__title">Этапы работы</h2>
+        <p class="work-stages__subtitle">От&nbsp;идеи до&nbsp;готового аквариума&nbsp;— прозрачный процесс на&nbsp;каждом шаге.</p>
+      </div>
+
+      <div class="work-stages__track-wrap">
+        <ol class="work-stages__timeline">
+          <li class="work-stages__step">
+            <span class="work-stages__circle">1</span>
+            <h3 class="work-stages__step-title">Заявка или консультация</h3>
+          </li>
+          <li class="work-stages__step">
+            <span class="work-stages__circle">2</span>
+            <h3 class="work-stages__step-title">Обсуждение помещения, размеров, стиля и&nbsp;бюджета</h3>
+          </li>
+          <li class="work-stages__step">
+            <span class="work-stages__circle">3</span>
+            <h3 class="work-stages__step-title">Разработка концепции</h3>
+          </li>
+          <li class="work-stages__step">
+            <span class="work-stages__circle">4</span>
+            <h3 class="work-stages__step-title">Проектирование и&nbsp;подбор оборудования</h3>
+          </li>
+          <li class="work-stages__step">
+            <span class="work-stages__circle">5</span>
+            <h3 class="work-stages__step-title">Изготовление аквариума</h3>
+          </li>
+          <li class="work-stages__step">
+            <span class="work-stages__circle">6</span>
+            <h3 class="work-stages__step-title">Оформление и&nbsp;декорирование</h3>
+          </li>
+          <li class="work-stages__step">
+            <span class="work-stages__circle">7</span>
+            <h3 class="work-stages__step-title">Доставка и&nbsp;установка</h3>
+          </li>
+          <li class="work-stages__step">
+            <span class="work-stages__circle">8</span>
+            <h3 class="work-stages__step-title">Запуск биосистемы</h3>
+          </li>
+          <li class="work-stages__step">
+            <span class="work-stages__circle">9</span>
+            <h3 class="work-stages__step-title">Дальнейшее обслуживание</h3>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why choose us -->
+  <section class="why-us" id="why-us">
+    <div class="container">
+      <div class="why-us__layout">
+        <div class="why-us__intro">
+          <h2 class="why-us__title">Почему выбирают <em>Aqua Design Technology</em></h2>
+          <p class="why-us__subtitle">Комплексный подход к&nbsp;аквариумам для дома и&nbsp;бизнеса&nbsp;— от&nbsp;проекта до&nbsp;регулярного ухода.</p>
+        </div>
+
+        <ul class="why-us__benefits">
+          <li class="why-us__benefit">
+            <span class="why-us__accent" aria-hidden="true"></span>
+            <p class="why-us__benefit-text">Аквариумы под ключ</p>
+          </li>
+          <li class="why-us__benefit">
+            <span class="why-us__accent" aria-hidden="true"></span>
+            <p class="why-us__benefit-text">Индивидуальное проектирование</p>
+          </li>
+          <li class="why-us__benefit">
+            <span class="why-us__accent" aria-hidden="true"></span>
+            <p class="why-us__benefit-text">Работа с&nbsp;частными и&nbsp;коммерческими интерьерами</p>
+          </li>
+          <li class="why-us__benefit">
+            <span class="why-us__accent" aria-hidden="true"></span>
+            <p class="why-us__benefit-text">Разные стили оформления</p>
+          </li>
+          <li class="why-us__benefit">
+            <span class="why-us__accent" aria-hidden="true"></span>
+            <p class="why-us__benefit-text">Проектирование, установка и&nbsp;обслуживание в&nbsp;одной компании</p>
+          </li>
+          <li class="why-us__benefit">
+            <span class="why-us__accent" aria-hidden="true"></span>
+            <p class="why-us__benefit-text">Работа по&nbsp;Минску и&nbsp;всей Беларуси</p>
+          </li>
+          <li class="why-us__benefit">
+            <span class="why-us__accent" aria-hidden="true"></span>
+            <p class="why-us__benefit-text">Возможность обслуживания после запуска</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Instagram & main site -->
+  <section class="promo-split" id="promo">
+    <div class="promo-split__inner">
+      <div class="promo-split__panel promo-split__panel--instagram">
+        <div class="promo-split__content">
+          <h2 class="promo-split__title">Больше живых работ&nbsp;— в&nbsp;Instagram</h2>
+          <p class="promo-split__desc">Посмотрите реальные аквариумы, оформление, детали обслуживания и&nbsp;свежие проекты Aqua Design Technology.</p>
+          <div class="promo-split__grid">
+            <button type="button" class="promo-split__photo" data-index="0" aria-label="Открыть фото 1">
+              <img src="img/projects/1.jpg" alt="Проект AquaDT 1" loading="lazy" width="320" height="320">
+            </button>
+            <button type="button" class="promo-split__photo" data-index="1" aria-label="Открыть фото 2">
+              <img src="img/projects/2.jpg" alt="Проект AquaDT 2" loading="lazy" width="320" height="320">
+            </button>
+            <button type="button" class="promo-split__photo" data-index="2" aria-label="Открыть фото 3">
+              <img src="img/projects/3.jpg" alt="Проект AquaDT 3" loading="lazy" width="320" height="320">
+            </button>
+            <button type="button" class="promo-split__photo" data-index="3" aria-label="Открыть фото 4">
+              <img src="img/projects/4.jpg" alt="Проект AquaDT 4" loading="lazy" width="320" height="320">
+            </button>
+            <button type="button" class="promo-split__photo" data-index="4" aria-label="Открыть фото 5">
+              <img src="img/projects/5.jpg" alt="Проект AquaDT 5" loading="lazy" width="320" height="320">
+            </button>
+            <button type="button" class="promo-split__photo" data-index="5" aria-label="Открыть фото 6">
+              <img src="img/projects/6.jpg" alt="Проект AquaDT 6" loading="lazy" width="320" height="320">
+            </button>
+          </div>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--lg promo-split__btn"><img src="img/inst.svg" alt="" class="btn__icon" width="22" height="22" aria-hidden="true">Перейти в&nbsp;Instagram</a>
+        </div>
+      </div>
+
+      <div class="promo-split__panel promo-split__panel--site">
+        <div class="promo-split__content">
+          <h2 class="promo-split__title">Хотите изучить компанию подробнее?</h2>
+          <p class="promo-split__desc">На&nbsp;основном сайте Aqua Design Technology можно подробнее посмотреть продукцию, услуги, фотогалерею и&nbsp;дополнительную информацию о&nbsp;компании.</p>
+          <div class="promo-split__monitor" aria-hidden="true">
+            <div class="promo-split__monitor-top">
+              <span class="promo-split__monitor-dot"></span>
+              <span class="promo-split__monitor-dot"></span>
+              <span class="promo-split__monitor-dot"></span>
+            </div>
+            <div class="promo-split__monitor-screen">
+              <img src="img/mainpage.png" alt="Скриншот основного сайта Aqua Design Technology" loading="lazy" width="640" height="400">
+            </div>
+            <div class="promo-split__monitor-stand"></div>
+          </div>
+          <a href="https://aquadt.by" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--lg promo-split__btn"><img src="img/site.svg" alt="" class="btn__icon" width="22" height="22" aria-hidden="true">Перейти на&nbsp;основной сайт</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="gallery-modal" id="gallery-modal" hidden>
+    <div class="gallery-modal__backdrop" data-gallery-close></div>
+    <div class="gallery-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="gallery-modal-title">
+      <h2 class="gallery-modal__title visually-hidden" id="gallery-modal-title">Галерея проектов</h2>
+      <button type="button" class="gallery-modal__close" aria-label="Закрыть" data-gallery-close>&times;</button>
+      <button type="button" class="gallery-modal__arrow gallery-modal__arrow--prev" id="gallery-prev" aria-label="Предыдущее фото">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="gallery-modal__viewport" id="gallery-viewport">
+        <div class="gallery-modal__track" id="gallery-track"></div>
+      </div>
+      <button type="button" class="gallery-modal__arrow gallery-modal__arrow--next" id="gallery-next" aria-label="Следующее фото">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <p class="gallery-modal__counter" id="gallery-counter" aria-live="polite">1 / 8</p>
+    </div>
+  </div>
+
+  <!-- Request form -->
+  <section class="request" id="request">
+    <div class="container">
+      <div class="request__layout">
+        <div class="request__intro">
+          <h2 class="request__title">Оставьте заявку</h2>
+          <p class="request__subtitle">Расскажите кратко о&nbsp;задаче&nbsp;— мы свяжемся с&nbsp;вами и&nbsp;подберём решение под ваш интерьер и&nbsp;бюджет.</p>
+        </div>
+
+        <div class="request__panel">
+          <form class="request__form" id="request-form" novalidate>
+            <div class="request__field">
+              <label class="request__label" for="request-name">Имя</label>
+              <input class="request__input" type="text" id="request-name" name="name" autocomplete="name" required placeholder="Как к вам обращаться">
+            </div>
+
+            <div class="request__row">
+              <div class="request__field">
+                <label class="request__label" for="request-phone">Телефон</label>
+                <input class="request__input" type="tel" id="request-phone" name="phone" autocomplete="tel" required placeholder="+375 (__) ___-__-__">
+              </div>
+              <div class="request__field">
+                <label class="request__label" for="request-city">Город</label>
+                <input class="request__input" type="text" id="request-city" name="city" autocomplete="address-level2" required placeholder="Минск">
+              </div>
+            </div>
+
+            <div class="request__field">
+              <label class="request__label" for="request-interest">Тип интереса</label>
+              <select class="request__input request__select" id="request-interest" name="interest" required>
+                <option value="" disabled selected>Выберите вариант</option>
+                <option value="aquarium">Аквариум под ключ</option>
+                <option value="service">Обслуживание</option>
+                <option value="redesign">Переоформление</option>
+                <option value="repair">Ремонт</option>
+                <option value="consultation">Консультация</option>
+              </select>
+            </div>
+
+            <div class="request__field">
+              <label class="request__label" for="request-comment">Комментарий</label>
+              <textarea class="request__textarea" id="request-comment" name="comment" rows="4" placeholder="Кратко опишите задачу или пожелания"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn--primary btn--lg request__submit">Отправить заявку</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="request-toast" id="request-toast" hidden role="status" aria-live="polite">
+    <div class="request-toast__inner">
+      <p class="request-toast__text">Спасибо! Мы получили вашу заявку и&nbsp;свяжемся с&nbsp;вами для консультации.</p>
+      <button type="button" class="request-toast__close" id="request-toast-close" aria-label="Закрыть сообщение">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="#hero" class="footer__logo">
+            <img src="img/logo.svg" alt="Aqua Design Technology" class="footer__logo-img" width="160" height="40">
+          </a>
+          <p class="footer__desc">Проектируем, изготавливаем, оформляем, устанавливаем и&nbsp;обслуживаем аквариумы для квартир, домов, офисов и&nbsp;коммерческих пространств.</p>
+          <a href="tel:+375293748726" class="footer__phone">
+            <img src="img/call.svg" alt="" class="footer__phone-icon" width="28" height="28" aria-hidden="true">
+            +375 (29) 374-87-26
+          </a>
+          <div class="footer__actions">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="footer__action">
+              <img src="img/inst.svg" alt="" class="footer__action-icon" width="20" height="20" aria-hidden="true">
+              Instagram
+            </a>
+            <a href="https://aquadt.by" target="_blank" rel="noopener noreferrer" class="footer__action">
+              <img src="img/site.svg" alt="" class="footer__action-icon" width="20" height="20" aria-hidden="true">
+              Основной сайт
+            </a>
+          </div>
+        </div>
+
+        <nav class="footer__nav" aria-label="Навигация по странице">
+          <p class="footer__nav-title">Навигация</p>
+          <ul class="footer__menu">
+            <li><a href="#aquariums" class="footer__link">Аквариумы</a></li>
+            <li><a href="#styles" class="footer__link">Стили</a></li>
+            <li><a href="#service" class="footer__link">Обслуживание</a></li>
+            <li><a href="#stages" class="footer__link">Этапы работы</a></li>
+            <li><a href="#request" class="footer__link">Заявка</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="footer__bottom">
+        <p class="footer__legal">УНП&nbsp;193451285 от&nbsp;30.07.2020</p>
+        <p class="footer__copy">© Aqua Design Technology, Беларусь, Минск</p>
+      </div>
+    </div>
+  </footer>
 
   <script src="script.js"></script>
 </body>
