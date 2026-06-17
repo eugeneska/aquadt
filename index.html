@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aqua Design Technology — Аквариумы под ключ в Беларуси</title>
+  <meta name="description" content="Проектируем, изготавливаем, оформляем, устанавливаем и обслуживаем аквариумы для квартир, домов, офисов и ресторанов в Беларуси.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="#" class="header__logo">
+        <span class="header__logo-icon" aria-hidden="true">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="36" height="36" rx="8" fill="url(#logoGrad)"/>
+            <path d="M8 22C8 22 11 14 18 14C25 14 28 22 28 22" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M10 24C10 24 13 18 18 18C23 18 26 24 26 24" stroke="#fff" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/>
+            <circle cx="22" cy="16" r="1.5" fill="#fff" opacity="0.8"/>
+            <defs>
+              <linearGradient id="logoGrad" x1="0" y1="0" x2="36" y2="36">
+                <stop stop-color="#f07820"/>
+                <stop offset="1" stop-color="#c45a10"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </span>
+        <span class="header__logo-text">
+          <span class="header__logo-line">Aqua Design</span>
+          <span class="header__logo-line">Technology</span>
+        </span>
+      </a>
+
+      <nav class="header__nav" id="nav">
+        <ul class="header__menu">
+          <li><a href="#aquariums" class="header__link">Аквариумы</a></li>
+          <li><a href="#styles" class="header__link">Стили</a></li>
+          <li><a href="#service" class="header__link">Обслуживание</a></li>
+          <li><a href="#stages" class="header__link">Этапы работы</a></li>
+          <li><a href="#request" class="header__link">Заявка</a></li>
+        </ul>
+        <div class="header__actions header__actions--mobile">
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--sm">Instagram</a>
+          <a href="https://aquadt.by" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--sm">Основной сайт</a>
+          <a href="#request" class="btn btn--primary btn--sm">Получить консультацию</a>
+        </div>
+      </nav>
+
+      <div class="header__actions header__actions--desktop">
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--sm">Instagram</a>
+        <a href="https://aquadt.by" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--sm">Основной сайт</a>
+        <a href="#request" class="btn btn--primary btn--sm">Получить консультацию</a>
+      </div>
+
+      <button class="header__burger" id="burger" aria-label="Открыть меню" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div class="hero__ambient" aria-hidden="true">
+      <span class="hero__orb hero__orb--1"></span>
+      <span class="hero__orb hero__orb--2"></span>
+      <span class="hero__orb hero__orb--3"></span>
+    </div>
+
+    <div class="container hero__inner">
+      <div class="hero__content">
+        <h1 class="hero__title">
+          <span class="hero__title-line">Аквариумы <span class="hero__title-accent">под ключ</span></span>
+          <span class="hero__title-line">для интерьеров <span class="hero__title-accent">в&nbsp;Беларуси</span></span>
+        </h1>
+        <p class="hero__subtitle">
+          Проектируем, изготавливаем, оформляем, устанавливаем и&nbsp;обслуживаем аквариумы для квартир, домов, офисов, ресторанов и&nbsp;коммерческих пространств.
+        </p>
+
+        <div class="hero__cta">
+          <a href="#request" class="btn btn--primary btn--lg">
+            <span>Рассчитать стоимость</span>
+          </a>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--lg">
+            Смотреть работы в Instagram
+          </a>
+        </div>
+
+        <ul class="hero__features">
+          <li class="hero__feature">
+            <span class="hero__feature-icon" aria-hidden="true">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+                <path d="M12 21C12 21 19 14.5 19 9.5C19 5.91 16.09 3 12.5 3C8.91 3 6 5.91 6 9.5C6 14.5 12 21 12 21Z" stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="12" cy="9.5" r="2.5" stroke="currentColor" stroke-width="1.5"/>
+              </svg>
+            </span>
+            <span class="hero__feature-text">Работаем по Минску и&nbsp;всей Беларуси</span>
+          </li>
+          <li class="hero__feature">
+            <span class="hero__feature-icon" aria-hidden="true">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+                <path d="M12 20H21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M16.5 3.5C17.3284 2.67157 18.6716 2.67157 19.5 3.5C20.3284 4.32843 20.3284 5.67157 19.5 6.5L7 19L3 20L4 16L16.5 3.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span class="hero__feature-text">Индивидуальное проектирование</span>
+          </li>
+          <li class="hero__feature">
+            <span class="hero__feature-icon" aria-hidden="true">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M12 1V4M12 20V23M4.22 4.22L6.34 6.34M17.66 17.66L19.78 19.78M1 12H4M20 12H23M4.22 19.78L6.34 17.66M17.66 6.34L19.78 4.22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="hero__feature-text">Оформление и&nbsp;обслуживание под ключ</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="hero__visual">
+        <div class="hero__visual-glow" aria-hidden="true"></div>
+        <div class="hero__image-frame">
+          <div class="hero__image-wrap">
+            <img src="img/back2.jpg" alt="Интерьер с аквариумом" class="hero__image" loading="eager">
+          </div>
+          <div class="hero__image-shine" aria-hidden="true"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What we do -->
+  <section class="services" id="stages">
+    <div class="container">
+      <div class="services__header">
+        <h2 class="services__title">Что мы делаем</h2>
+        <p class="services__subtitle">Полный цикл работ — от идеи до стабильной и красивой экосистемы.</p>
+      </div>
+
+      <ul class="services__grid">
+        <li class="services__card">
+          <span class="services__icon" aria-hidden="true">
+            <img src="img/whatweared/1.svg" alt="" width="36" height="36">
+          </span>
+          <span class="services__num">1</span>
+          <span class="services__label">Консультация</span>
+        </li>
+        <li class="services__card">
+          <span class="services__icon" aria-hidden="true">
+            <img src="img/whatweared/2.svg" alt="" width="36" height="36">
+          </span>
+          <span class="services__num">2</span>
+          <span class="services__label">Проектирование</span>
+        </li>
+        <li class="services__card">
+          <span class="services__icon" aria-hidden="true">
+            <img src="img/whatweared/3.svg" alt="" width="36" height="36">
+          </span>
+          <span class="services__num">3</span>
+          <span class="services__label">Изготовление</span>
+        </li>
+        <li class="services__card">
+          <span class="services__icon" aria-hidden="true">
+            <img src="img/whatweared/4.svg" alt="" width="36" height="36">
+          </span>
+          <span class="services__num">4</span>
+          <span class="services__label">Подбор оборудования</span>
+        </li>
+        <li class="services__card">
+          <span class="services__icon" aria-hidden="true">
+            <img src="img/whatweared/5.svg" alt="" width="36" height="36">
+          </span>
+          <span class="services__num">5</span>
+          <span class="services__label">Оформление акваскейпа</span>
+        </li>
+        <li class="services__card">
+          <span class="services__icon" aria-hidden="true">
+            <img src="img/whatweared/6.svg" alt="" width="36" height="36">
+          </span>
+          <span class="services__num">6</span>
+          <span class="services__label">Подбор рыб и&nbsp;растений</span>
+        </li>
+        <li class="services__card">
+          <span class="services__icon" aria-hidden="true">
+            <img src="img/whatweared/7.svg" alt="" width="36" height="36">
+          </span>
+          <span class="services__num">7</span>
+          <span class="services__label">Доставка и&nbsp;установка</span>
+        </li>
+        <li class="services__card">
+          <span class="services__icon" aria-hidden="true">
+            <img src="img/whatweared/8.svg" alt="" width="36" height="36">
+          </span>
+          <span class="services__num">8</span>
+          <span class="services__label">Запуск и&nbsp;обслуживание</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Custom aquarium -->
+  <section class="custom-order" id="aquariums">
+    <div class="container">
+      <div class="custom-order__inner">
+        <div class="custom-order__content">
+          <h2 class="custom-order__title">Аквариум под заказ</h2>
+          <p class="custom-order__intro">
+            Мы создаём аквариумы, которые идеально подходят под ваш интерьер и&nbsp;образ жизни. Это не&nbsp;просто покупка ёмкости&nbsp;— комплексный интерьерный проект от&nbsp;идеи до&nbsp;запуска.
+          </p>
+          <ul class="custom-order__list">
+            <li>Нестандартные размеры</li>
+            <li>Необычные формы</li>
+            <li>Точная интеграция в&nbsp;интерьер</li>
+            <li>Встраивание в&nbsp;стену, мебель, нишу или коммерческое пространство</li>
+            <li>Подбор оформления под стиль помещения</li>
+            <li>Полный цикл работ «под ключ»</li>
+          </ul>
+          <a href="#request" class="btn btn--primary btn--lg custom-order__cta">Обсудить проект</a>
+        </div>
+        <div class="custom-order__visual">
+          <img
+            src="img/order.jpg"
+            alt="Аквариум как часть интерьера"
+            class="custom-order__image"
+            loading="lazy"
+            width="720"
+            height="540"
+          >
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Aquarium types -->
+  <section class="species" id="aquarium-types">
+    <div class="container species__header-wrap">
+      <div class="species__header">
+        <h2 class="species__title">Виды аквариумов</h2>
+        <p class="species__subtitle">Разные форматы и&nbsp;решения для любых интерьеров и&nbsp;задач.</p>
+      </div>
+    </div>
+
+    <div class="species__rows">
+        <ul class="species__row">
+          <li class="species__card">
+            <div class="species__image-wrap">
+              <img src="img/species/1.jpg" alt="Морской аквариум" class="species__image" loading="lazy" width="320" height="200">
+            </div>
+            <div class="species__body">
+              <h3 class="species__card-title">Морской аквариум</h3>
+              <p class="species__desc">Премиальный и&nbsp;эффектный вариант с&nbsp;атмосферой настоящего кораллового рифа, яркими рыбами, кораллами и&nbsp;сложной биосистемой. Подходит для тех, кто хочет максимально впечатляющий аквариум.</p>
+              <ul class="species__features">
+                <li>Впечатляющий вид</li>
+                <li>Высокая биостабильность</li>
+                <li>Идеален для премиальных интерьеров</li>
+              </ul>
+              <a href="#request" class="btn btn--outline species__cta">Обсудить такой аквариум</a>
+            </div>
+          </li>
+          <li class="species__card">
+            <div class="species__image-wrap">
+              <img src="img/species/2.jpg" alt="Аквариум псевдоморе" class="species__image" loading="lazy" width="320" height="200">
+            </div>
+            <div class="species__body">
+              <h3 class="species__card-title">Аквариум псевдоморе</h3>
+              <p class="species__desc">Визуальная иллюзия морского аквариума в&nbsp;пресной воде. Более простой и&nbsp;доступный в&nbsp;обслуживании вариант, который сохраняет яркость и&nbsp;декоративность морской эстетики.</p>
+              <ul class="species__features">
+                <li>Эффект кораллового рифа</li>
+                <li>Простота обслуживания</li>
+                <li>Оптимальное соотношение цена&nbsp;/&nbsp;результат</li>
+              </ul>
+              <a href="#request" class="btn btn--outline species__cta">Обсудить такой аквариум</a>
+            </div>
+          </li>
+          <li class="species__card">
+            <div class="species__image-wrap">
+              <img src="img/species/3.jpg" alt="Природный аквариум" class="species__image" loading="lazy" width="320" height="200">
+            </div>
+            <div class="species__body">
+              <h3 class="species__card-title">Природный аквариум</h3>
+              <p class="species__desc">Аквариум, вдохновлённый природными ландшафтами, корягами, камнями, натуральными материалами и&nbsp;спокойной эстетикой живой природы.</p>
+              <ul class="species__features">
+                <li>Натуральный вид</li>
+                <li>Полезная экосистема</li>
+                <li>Спокойствие и&nbsp;гармония</li>
+              </ul>
+              <a href="#request" class="btn btn--outline species__cta">Обсудить такой аквариум</a>
+            </div>
+          </li>
+          <li class="species__card">
+            <div class="species__image-wrap">
+              <img src="img/species/4.jpg" alt="Аквариум Hardscape" class="species__image" loading="lazy" width="320" height="200">
+            </div>
+            <div class="species__body">
+              <h3 class="species__card-title">Аквариум Hardscape</h3>
+              <p class="species__desc">Строгая композиция из&nbsp;камней, коряг и&nbsp;грунта, где главную роль играет структура ландшафта. Минималистичный, выразительный и&nbsp;интерьерный стиль.</p>
+              <ul class="species__features">
+                <li>Сильный визуальный акцент</li>
+                <li>Минимум растений</li>
+                <li>Идеален для современных интерьеров</li>
+              </ul>
+              <a href="#request" class="btn btn--outline species__cta">Обсудить такой аквариум</a>
+            </div>
+          </li>
+        </ul>
+
+        <ul class="species__row species__row--centered">
+          <li class="species__card">
+            <div class="species__image-wrap">
+              <img src="img/species/5.jpg" alt="Японский аквариум с живыми растениями" class="species__image" loading="lazy" width="320" height="200">
+            </div>
+            <div class="species__body">
+              <h3 class="species__card-title">Японский аквариум с&nbsp;живыми растениями</h3>
+              <p class="species__desc">Акваскейп с&nbsp;живыми растениями, камнями, корягами и&nbsp;рыбами, построенный как цельная подводная композиция. Должен ассоциироваться с&nbsp;философией Nature Aquarium, гармонией и&nbsp;пейзажем под водой.</p>
+              <ul class="species__features">
+                <li>Эстетика дзэн</li>
+                <li>Аккуратный баланс</li>
+                <li>Долговременная стабильность</li>
+              </ul>
+              <a href="#request" class="btn btn--outline species__cta">Обсудить такой аквариум</a>
+            </div>
+          </li>
+          <li class="species__card">
+            <div class="species__image-wrap">
+              <img src="img/species/6.jpg" alt="Формы аквариумов" class="species__image" loading="lazy" width="320" height="200">
+            </div>
+            <div class="species__body">
+              <h3 class="species__card-title">Формы аквариумов</h3>
+              <p class="species__desc">Форма подбирается под планировку и&nbsp;задачи интерьера: классические прямоугольные, панорамные, угловые, цилиндрические, встроенные и&nbsp;полностью индивидуальные эксклюзивные решения.</p>
+              <ul class="species__features">
+                <li>Прямоугольные</li>
+                <li>Панорамные</li>
+                <li>Угловые и&nbsp;нестандартные</li>
+              </ul>
+              <a href="#request" class="btn btn--outline species__cta">Обсудить такой аквариум</a>
+            </div>
+          </li>
+          <li class="species__card">
+            <div class="species__image-wrap">
+              <img src="img/species/7.jpg" alt="Материалы отделки" class="species__image" loading="lazy" width="320" height="200">
+            </div>
+            <div class="species__body">
+              <h3 class="species__card-title">Материалы отделки</h3>
+              <p class="species__desc">Тумба, облицовка и&nbsp;декоративные панели согласуются со стилем помещения: натуральные материалы, фактуры и&nbsp;цвета делают аквариум органичной частью интерьера.</p>
+              <ul class="species__features">
+                <li>Натуральный камень</li>
+                <li>МДФ и&nbsp;шпоны</li>
+                <li>Стекло, металл и&nbsp;другие решения</li>
+              </ul>
+              <a href="#request" class="btn btn--outline species__cta">Обсудить такой аквариум</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+  </section>
+
+  <!-- Decoration styles -->
+  <section class="decoration-styles" id="styles">
+    <div class="container">
+      <div class="decoration-styles__header">
+        <h2 class="decoration-styles__title">Стили оформления</h2>
+        <p class="decoration-styles__subtitle">Разные стили и&nbsp;решения, чтобы увидеть примеры и&nbsp;описание.</p>
+      </div>
+
+      <div class="decoration-styles__layout">
+        <div class="decoration-styles__tabs" role="tablist" aria-label="Стили оформления аквариумов">
+          <button type="button" class="decoration-styles__tab decoration-styles__tab--active" role="tab" aria-selected="true" aria-controls="style-panel" id="style-tab-0" data-index="0">Псевдоморе</button>
+          <button type="button" class="decoration-styles__tab" role="tab" aria-selected="false" aria-controls="style-panel" id="style-tab-1" data-index="1">Природный стиль</button>
+          <button type="button" class="decoration-styles__tab" role="tab" aria-selected="false" aria-controls="style-panel" id="style-tab-2" data-index="2">Hardscape</button>
+          <button type="button" class="decoration-styles__tab" role="tab" aria-selected="false" aria-controls="style-panel" id="style-tab-3" data-index="3">Морской стиль</button>
+          <button type="button" class="decoration-styles__tab" role="tab" aria-selected="false" aria-controls="style-panel" id="style-tab-4" data-index="4">Японский стиль с&nbsp;живыми растениями</button>
+        </div>
+
+        <div class="decoration-styles__panel" id="style-panel" role="tabpanel" aria-labelledby="style-tab-0">
+          <div class="decoration-styles__image-wrap">
+            <img src="img/styles/1.jpg" alt="Псевдоморе" class="decoration-styles__image" id="style-image" loading="lazy" width="560" height="420">
+          </div>
+          <div class="decoration-styles__content">
+            <p class="decoration-styles__desc" id="style-desc">Яркая и&nbsp;декоративная эстетика морского рифа в&nbsp;пресной воде&nbsp;— идеальный баланс между эффектностью и&nbsp;простотой обслуживания.</p>
+            <h3 class="decoration-styles__features-title">Визуальные характеристики:</h3>
+            <ul class="decoration-styles__features" id="style-features">
+              <li>Яркие рыбки</li>
+              <li>Искусственные кораллы</li>
+              <li>Светлый декор</li>
+              <li>Ощущение тропического рифа</li>
+            </ul>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--lg decoration-styles__cta">Посмотреть примеры работ в&nbsp;Instagram</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- For who -->
+  <section class="forwho" id="forwho">
+    <div class="container">
+      <div class="forwho__header">
+        <h2 class="forwho__title">Для кого подойдут наши аквариумы</h2>
+      </div>
+
+      <ul class="forwho__grid">
+        <li class="forwho__card">
+          <span class="forwho__icon" aria-hidden="true">
+            <img src="img/forwho/1.svg" alt="" width="40" height="40">
+          </span>
+          <div class="forwho__body">
+            <h3 class="forwho__card-title">Квартира</h3>
+            <p class="forwho__desc">Делает интерьер живым и&nbsp;создаёт уют.</p>
+          </div>
+        </li>
+        <li class="forwho__card">
+          <span class="forwho__icon" aria-hidden="true">
+            <img src="img/forwho/2.svg" alt="" width="40" height="40">
+          </span>
+          <div class="forwho__body">
+            <h3 class="forwho__card-title">Частный дом</h3>
+            <p class="forwho__desc">Работает как визуальный центр помещения.</p>
+          </div>
+        </li>
+        <li class="forwho__card">
+          <span class="forwho__icon" aria-hidden="true">
+            <img src="img/forwho/3.svg" alt="" width="40" height="40">
+          </span>
+          <div class="forwho__body">
+            <h3 class="forwho__card-title">Офис</h3>
+            <p class="forwho__desc">Создаёт атмосферу спокойствия и&nbsp;повышает комфорт.</p>
+          </div>
+        </li>
+        <li class="forwho__card">
+          <span class="forwho__icon" aria-hidden="true">
+            <img src="img/forwho/4.svg" alt="" width="40" height="40">
+          </span>
+          <div class="forwho__body">
+            <h3 class="forwho__card-title">Ресторан</h3>
+            <p class="forwho__desc">Создаёт премиальное впечатление и&nbsp;запоминается гостям.</p>
+          </div>
+        </li>
+        <li class="forwho__card">
+          <span class="forwho__icon" aria-hidden="true">
+            <img src="img/forwho/5.svg" alt="" width="40" height="40">
+          </span>
+          <div class="forwho__body">
+            <h3 class="forwho__card-title">Гостиница</h3>
+            <p class="forwho__desc">Повышает статус пространства и&nbsp;уровень сервиса.</p>
+          </div>
+        </li>
+        <li class="forwho__card">
+          <span class="forwho__icon" aria-hidden="true">
+            <img src="img/forwho/6.svg" alt="" width="40" height="40">
+          </span>
+          <div class="forwho__body">
+            <h3 class="forwho__card-title">Торговое или административное пространство</h3>
+            <p class="forwho__desc">Работает как визуальный центр и&nbsp;привлекает внимание.</p>
+          </div>
+        </li>
+        <li class="forwho__card">
+          <span class="forwho__icon" aria-hidden="true">
+            <img src="img/forwho/7.svg" alt="" width="40" height="40">
+          </span>
+          <div class="forwho__body">
+            <h3 class="forwho__card-title">Зона ожидания</h3>
+            <p class="forwho__desc">Создаёт атмосферу спокойствия и&nbsp;делает ожидание комфортнее.</p>
+          </div>
+        </li>
+        <li class="forwho__card">
+          <span class="forwho__icon" aria-hidden="true">
+            <img src="img/forwho/8.svg" alt="" width="40" height="40">
+          </span>
+          <div class="forwho__body">
+            <h3 class="forwho__card-title">Кабинет руководителя</h3>
+            <p class="forwho__desc">Повышает статус пространства и&nbsp;создаёт премиальное впечатление.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Service maintenance -->
+  <section class="maintenance" id="service">
+    <div class="container">
+      <div class="maintenance__header">
+        <h2 class="maintenance__title">Сервисное обслуживание: мы работаем&nbsp;— вы наслаждаетесь аквариумом</h2>
+        <p class="maintenance__intro">
+          Аквариум&nbsp;— это живая биосистема, которая требует регулярного ухода. Компания берёт на&nbsp;себя обслуживание, чтобы аквариум оставался чистым, здоровым и&nbsp;красивым.
+        </p>
+      </div>
+
+      <h3 class="maintenance__timeline-title">Что входит в&nbsp;обслуживание</h3>
+    </div>
+
+    <div class="maintenance__timeline-wrap">
+      <ol class="maintenance__timeline">
+          <li class="maintenance__step">
+            <span class="maintenance__circle">1</span>
+            <span class="maintenance__arrow" aria-hidden="true"></span>
+            <span class="maintenance__label">Подмена воды</span>
+          </li>
+          <li class="maintenance__step">
+            <span class="maintenance__circle">2</span>
+            <span class="maintenance__arrow" aria-hidden="true"></span>
+            <span class="maintenance__label">Чистка стекол</span>
+          </li>
+          <li class="maintenance__step">
+            <span class="maintenance__circle">3</span>
+            <span class="maintenance__arrow" aria-hidden="true"></span>
+            <span class="maintenance__label">Чистка декораций</span>
+          </li>
+          <li class="maintenance__step">
+            <span class="maintenance__circle">4</span>
+            <span class="maintenance__arrow" aria-hidden="true"></span>
+            <span class="maintenance__label">Сифон грунта</span>
+          </li>
+          <li class="maintenance__step">
+            <span class="maintenance__circle">5</span>
+            <span class="maintenance__arrow" aria-hidden="true"></span>
+            <span class="maintenance__label">Проверка оборудования</span>
+          </li>
+          <li class="maintenance__step">
+            <span class="maintenance__circle">6</span>
+            <span class="maintenance__arrow" aria-hidden="true"></span>
+            <span class="maintenance__label">Контроль параметров воды</span>
+          </li>
+          <li class="maintenance__step">
+            <span class="maintenance__circle">7</span>
+            <span class="maintenance__arrow" aria-hidden="true"></span>
+            <span class="maintenance__label">Уход за&nbsp;рыбами и&nbsp;растениями</span>
+          </li>
+          <li class="maintenance__step">
+            <span class="maintenance__circle">8</span>
+            <span class="maintenance__arrow" aria-hidden="true"></span>
+            <span class="maintenance__label">Наблюдение за&nbsp;состоянием биосистемы</span>
+          </li>
+          <li class="maintenance__step">
+            <span class="maintenance__circle">9</span>
+            <span class="maintenance__arrow" aria-hidden="true"></span>
+            <span class="maintenance__label">Разовое или постоянное обслуживание</span>
+          </li>
+          <li class="maintenance__step">
+            <span class="maintenance__circle">10</span>
+            <span class="maintenance__arrow" aria-hidden="true"></span>
+            <span class="maintenance__label">Переоформление аквариума</span>
+          </li>
+          <li class="maintenance__step">
+            <span class="maintenance__circle">11</span>
+            <span class="maintenance__arrow" aria-hidden="true"></span>
+            <span class="maintenance__label">Ремонт аквариумов</span>
+          </li>
+          <li class="maintenance__step">
+            <span class="maintenance__circle">12</span>
+            <span class="maintenance__arrow" aria-hidden="true"></span>
+            <span class="maintenance__label">Доставка рыб, кормов, медикаментов и&nbsp;оборудования</span>
+          </li>
+          <li class="maintenance__step">
+            <span class="maintenance__circle">13</span>
+            <span class="maintenance__arrow" aria-hidden="true"></span>
+            <span class="maintenance__label">Консультации при форс-мажорах</span>
+          </li>
+        </ol>
+    </div>
+
+    <div class="container">
+      <div class="maintenance__cta">
+        <a href="#request" class="btn btn--primary btn--lg">Заказать обслуживание</a>
+        <a href="#request" class="btn btn--outline btn--lg">Получить консультацию по&nbsp;уходу</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Placeholder sections for nav anchors -->
+  <div id="request" class="section-anchor"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
