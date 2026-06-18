@@ -263,16 +263,31 @@
     updateSpeciesSlider();
   }
 
-  var projectGalleryImages = [
-    { src: 'img/projects/1.jpg', alt: 'Проект AquaDT 1' },
-    { src: 'img/projects/2.jpg', alt: 'Проект AquaDT 2' },
-    { src: 'img/projects/3.jpg', alt: 'Проект AquaDT 3' },
-    { src: 'img/projects/4.jpg', alt: 'Проект AquaDT 4' },
-    { src: 'img/projects/5.jpg', alt: 'Проект AquaDT 5' },
-    { src: 'img/projects/6.jpg', alt: 'Проект AquaDT 6' },
-    { src: 'img/projects/7.jpg', alt: 'Проект AquaDT 7' },
-    { src: 'img/projects/8.jpg', alt: 'Проект AquaDT 8' }
-  ];
+  var gallerySets = {
+    projects: [
+      { src: 'img/projects/1.jpg', alt: 'Проект AquaDT 1' },
+      { src: 'img/projects/2.jpg', alt: 'Проект AquaDT 2' },
+      { src: 'img/projects/3.jpg', alt: 'Проект AquaDT 3' },
+      { src: 'img/projects/4.jpg', alt: 'Проект AquaDT 4' },
+      { src: 'img/projects/5.jpg', alt: 'Проект AquaDT 5' },
+      { src: 'img/projects/6.jpg', alt: 'Проект AquaDT 6' },
+      { src: 'img/projects/7.jpg', alt: 'Проект AquaDT 7' },
+      { src: 'img/projects/8.jpg', alt: 'Проект AquaDT 8' }
+    ],
+    works: [
+      { src: 'img/gallery/1.jpg', alt: 'Аквариум AquaDT — проект 1' },
+      { src: 'img/gallery/2.jpg', alt: 'Аквариум AquaDT — проект 2' },
+      { src: 'img/gallery/3.jpg', alt: 'Аквариум AquaDT — проект 3' },
+      { src: 'img/gallery/4.jpg', alt: 'Аквариум AquaDT — проект 4' },
+      { src: 'img/gallery/5.jpg', alt: 'Аквариум AquaDT — проект 5' },
+      { src: 'img/gallery/6.jpg', alt: 'Аквариум AquaDT — проект 6' },
+      { src: 'img/gallery/7.jpg', alt: 'Аквариум AquaDT — проект 7' },
+      { src: 'img/gallery/8.jpg', alt: 'Аквариум AquaDT — проект 8' },
+      { src: 'img/gallery/9.jpg', alt: 'Аквариум AquaDT — проект 9' },
+      { src: 'img/gallery/10.jpg', alt: 'Аквариум AquaDT — проект 10' },
+      { src: 'img/gallery/11.jpg', alt: 'Аквариум AquaDT — проект 11' }
+    ]
+  };
 
   var galleryModal = document.getElementById('gallery-modal');
   var galleryTrack = document.getElementById('gallery-track');
@@ -280,34 +295,57 @@
   var galleryPrev = document.getElementById('gallery-prev');
   var galleryNext = document.getElementById('gallery-next');
   var galleryCounter = document.getElementById('gallery-counter');
-  var galleryPhotos = document.querySelectorAll('.promo-split__photo');
+  var galleryTriggers = document.querySelectorAll('[data-gallery-set]');
+  var currentGallerySet = 'projects';
+  var builtGallerySet = null;
   var galleryIndex = 0;
   var galleryTouchStartX = 0;
   var galleryTouchDeltaX = 0;
 
-  if (galleryModal && galleryTrack && galleryViewport && projectGalleryImages.length) {
-    projectGalleryImages.forEach(function (item) {
-      var slide = document.createElement('div');
-      slide.className = 'gallery-modal__slide';
-      var img = document.createElement('img');
-      img.src = item.src;
-      img.alt = item.alt;
-      img.loading = 'lazy';
-      slide.appendChild(img);
-      galleryTrack.appendChild(slide);
-    });
-
-    function updateGallery() {
-      galleryTrack.style.transform = 'translateX(' + (-galleryIndex * 100) + '%)';
-      if (galleryCounter) {
-        galleryCounter.textContent = (galleryIndex + 1) + ' / ' + projectGalleryImages.length;
-      }
-      if (galleryPrev) galleryPrev.disabled = galleryIndex === 0;
-      if (galleryNext) galleryNext.disabled = galleryIndex === projectGalleryImages.length - 1;
+  if (galleryModal && galleryTrack && galleryViewport && galleryTriggers.length) {
+    function getGalleryImages() {
+      return gallerySets[currentGallerySet] || [];
     }
 
-    function openGallery(index) {
-      galleryIndex = Math.max(0, Math.min(index, projectGalleryImages.length - 1));
+    function buildGalleryTrack(setName) {
+      var images = gallerySets[setName];
+      if (!images) return;
+
+      galleryTrack.innerHTML = '';
+      images.forEach(function (item) {
+        var slide = document.createElement('div');
+        slide.className = 'gallery-modal__slide';
+        var img = document.createElement('img');
+        img.src = item.src;
+        img.alt = item.alt;
+        img.loading = 'lazy';
+        slide.appendChild(img);
+        galleryTrack.appendChild(slide);
+      });
+
+      builtGallerySet = setName;
+    }
+
+    function updateGallery() {
+      var images = getGalleryImages();
+      galleryTrack.style.transform = 'translateX(' + (-galleryIndex * 100) + '%)';
+      if (galleryCounter) {
+        galleryCounter.textContent = (galleryIndex + 1) + ' / ' + images.length;
+      }
+      if (galleryPrev) galleryPrev.disabled = galleryIndex === 0;
+      if (galleryNext) galleryNext.disabled = galleryIndex >= images.length - 1;
+    }
+
+    function openGallery(setName, index) {
+      if (!gallerySets[setName]) return;
+
+      currentGallerySet = setName;
+      if (builtGallerySet !== setName) {
+        buildGalleryTrack(setName);
+      }
+
+      var images = getGalleryImages();
+      galleryIndex = Math.max(0, Math.min(index, images.length - 1));
       updateGallery();
       galleryModal.hidden = false;
       document.body.style.overflow = 'hidden';
@@ -319,13 +357,14 @@
     }
 
     function goGallery(delta) {
-      galleryIndex = Math.max(0, Math.min(galleryIndex + delta, projectGalleryImages.length - 1));
+      var images = getGalleryImages();
+      galleryIndex = Math.max(0, Math.min(galleryIndex + delta, images.length - 1));
       updateGallery();
     }
 
-    galleryPhotos.forEach(function (photo) {
-      photo.addEventListener('click', function () {
-        openGallery(Number(photo.dataset.index));
+    galleryTriggers.forEach(function (trigger) {
+      trigger.addEventListener('click', function () {
+        openGallery(trigger.dataset.gallerySet, Number(trigger.dataset.galleryIndex));
       });
     });
 
