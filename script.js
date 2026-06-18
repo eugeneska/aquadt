@@ -414,9 +414,79 @@
   }
 
   var requestForm = document.getElementById('request-form');
+  var requestPhone = document.getElementById('request-phone');
   var requestToast = document.getElementById('request-toast');
   var requestToastClose = document.getElementById('request-toast-close');
   var requestToastTimer;
+
+  if (requestPhone) {
+    var phonePrefix = '+375 (';
+
+    function extractPhoneDigits(value) {
+      var digits = value.replace(/\D/g, '');
+      if (digits.indexOf('375') === 0) {
+        return digits.slice(3, 12);
+      }
+      return digits.slice(0, 9);
+    }
+
+    function formatPhoneValue(digits) {
+      if (!digits.length) return '';
+
+      var formatted = phonePrefix + digits.slice(0, 2);
+      if (digits.length <= 2) return formatted;
+
+      formatted += ') ' + digits.slice(2, 5);
+      if (digits.length <= 5) return formatted;
+
+      formatted += '-' + digits.slice(5, 7);
+      if (digits.length <= 7) return formatted;
+
+      return formatted + '-' + digits.slice(7, 9);
+    }
+
+    function applyPhoneMask() {
+      requestPhone.value = formatPhoneValue(extractPhoneDigits(requestPhone.value));
+    }
+
+    function validatePhone() {
+      var digits = extractPhoneDigits(requestPhone.value);
+      if (!digits.length) {
+        requestPhone.setCustomValidity('');
+        return;
+      }
+      if (digits.length < 9) {
+        requestPhone.setCustomValidity('Введите номер телефона полностью');
+        return;
+      }
+      requestPhone.setCustomValidity('');
+    }
+
+    requestPhone.addEventListener('focus', function () {
+      if (!requestPhone.value) {
+        requestPhone.value = phonePrefix;
+      }
+    });
+
+    requestPhone.addEventListener('input', function () {
+      applyPhoneMask();
+      validatePhone();
+    });
+
+    requestPhone.addEventListener('blur', function () {
+      if (!extractPhoneDigits(requestPhone.value).length) {
+        requestPhone.value = '';
+      }
+      validatePhone();
+    });
+
+    requestPhone.addEventListener('keydown', function (event) {
+      if (event.key !== 'Backspace') return;
+      if (extractPhoneDigits(requestPhone.value).length === 0) {
+        requestPhone.value = '';
+      }
+    });
+  }
 
   function hideRequestToast() {
     if (!requestToast) return;
