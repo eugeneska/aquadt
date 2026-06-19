@@ -340,21 +340,40 @@ ul {
 }
 
 /* ===== Hero ===== */
-.hero {
+.hero-pin {
   position: relative;
+  height: 200vh;
+  height: 200svh;
+}
+
+.hero {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1;
+  height: 100vh;
+  height: 100svh;
   min-height: 100vh;
   min-height: 100svh;
   display: flex;
   align-items: flex-end;
   padding-top: var(--header-height);
-  overflow: hidden;
   isolation: isolate;
+}
+
+.hero.hero--released {
+  position: absolute;
+  top: auto;
+  bottom: 0;
 }
 
 .hero__bg {
   position: absolute;
   inset: 0;
   z-index: 0;
+  overflow: hidden;
 }
 
 .hero__bg-image {
@@ -362,7 +381,7 @@ ul {
   height: 100%;
   object-fit: cover;
   object-position: center 35%;
-  transform: scale(1.02);
+  transform: scale(1.05);
 }
 
 .hero__bg-overlay {
@@ -393,6 +412,7 @@ ul {
   width: 100%;
   padding-top: 48px;
   padding-bottom: clamp(64px, 10vh, 100px);
+  transition: opacity 0.1s linear;
 }
 
 .hero__content {
@@ -536,6 +556,27 @@ ul {
     transform: none;
     transition: none;
   }
+
+  .hero__inner {
+    transition: none;
+  }
+
+  .hero-pin {
+    height: auto;
+  }
+
+  .hero {
+    position: relative;
+  }
+
+  .hero.hero--released {
+    position: relative;
+    bottom: auto;
+  }
+
+  .services {
+    margin-top: 0;
+  }
 }
 
 @keyframes pulse {
@@ -561,8 +602,14 @@ ul {
 
 /* ===== Services (What we do) ===== */
 .services {
+  position: relative;
+  z-index: 2;
+  margin-top: -100vh;
+  margin-top: -100svh;
   padding: 96px 0 104px;
   background: var(--bg-secondary);
+  border-radius: clamp(20px, 3vw, 32px) clamp(20px, 3vw, 32px) 0 0;
+  box-shadow: 0 -28px 56px rgba(0, 0, 0, 0.42);
   overflow: hidden;
 }
 
@@ -2849,11 +2896,16 @@ ul {
   }
 
   .header,
-  .hero,
   section,
   .footer {
     max-width: 100%;
     overflow-x: clip;
+  }
+
+  .hero-pin,
+  .hero {
+    max-width: 100%;
+    overflow: visible;
   }
 
   :root {
@@ -2956,16 +3008,12 @@ ul {
 
   .hero {
     align-items: flex-end;
-    overflow-x: clip;
     min-height: 100svh;
-  }
-
-  .hero__bg {
-    overflow: hidden;
+    height: 100svh;
   }
 
   .hero__bg-image {
-    transform: none;
+    transform: scale(1.02);
   }
 
   .hero__bg-overlay {

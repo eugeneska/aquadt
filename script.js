@@ -3,8 +3,33 @@
   const burger = document.getElementById('burger');
   const nav = document.getElementById('nav');
 
+  var hero = document.getElementById('hero');
+  var heroPin = document.querySelector('.hero-pin');
+  var heroInner = hero ? hero.querySelector('.hero__inner') : null;
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  function updateHeroParallax() {
+    if (!hero || !heroPin || reduceMotion.matches) return;
+
+    var viewHeight = window.innerHeight || hero.offsetHeight;
+    var scrollY = Math.max(window.scrollY, 0);
+    var overlapProgress = Math.min(scrollY / viewHeight, 1);
+    var pinBottom = heroPin.getBoundingClientRect().bottom;
+
+    if (pinBottom <= viewHeight + 1) {
+      hero.classList.add('hero--released');
+    } else {
+      hero.classList.remove('hero--released');
+    }
+
+    if (heroInner) {
+      heroInner.style.opacity = String(1 - overlapProgress * 0.5);
+    }
+  }
+
   function onScroll() {
     header.classList.toggle('header--scrolled', window.scrollY > 20);
+    updateHeroParallax();
   }
 
   function closeMenu() {
@@ -34,6 +59,7 @@
   });
 
   window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', updateHeroParallax, { passive: true });
   onScroll();
 
   var styleData = [
