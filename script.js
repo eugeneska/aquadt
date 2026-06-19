@@ -179,16 +179,31 @@
     var speciesCards = speciesTrack.querySelectorAll('.species__card');
     var speciesPrev = speciesSlider.querySelector('.species__arrow--prev');
     var speciesNext = speciesSlider.querySelector('.species__arrow--next');
+    var speciesViewport = speciesTrack.parentElement;
     var speciesIndex = 0;
+    var speciesGap = 24;
+
+    function isSpeciesMobileScroll() {
+      return window.innerWidth < 600;
+    }
 
     function getSpeciesPerView() {
-      if (window.innerWidth < 600) return 1;
+      if (isSpeciesMobileScroll()) return 1;
       if (window.innerWidth < 1200) return 2;
       return 3;
     }
 
     function getSpeciesMaxIndex() {
+      if (isSpeciesMobileScroll()) {
+        return Math.max(0, speciesCards.length - 1);
+      }
       return Math.max(0, speciesCards.length - getSpeciesPerView());
+    }
+
+    function updateSpeciesDots() {
+      speciesDots.querySelectorAll('.species__dot').forEach(function (dot, i) {
+        dot.classList.toggle('species__dot--active', i === speciesIndex);
+      });
     }
 
     function buildSpeciesDots() {
@@ -212,28 +227,71 @@
         speciesIndex = maxIndex;
       }
 
-      var viewport = speciesTrack.parentElement;
-      var gap = 24;
-      var cardWidth = (viewport.offsetWidth - gap * (perView - 1)) / perView;
+      if (isSpeciesMobileScroll()) {
+        speciesCards.forEach(function (card) {
+          card.style.width = '';
+          card.style.flexBasis = '';
+        });
+        speciesTrack.style.transform = 'none';
+        if (speciesPrev) speciesPrev.disabled = true;
+        if (speciesNext) speciesNext.disabled = true;
+        updateSpeciesDots();
+        return;
+      }
+
+      var cardWidth = (speciesViewport.offsetWidth - speciesGap * (perView - 1)) / perView;
 
       speciesCards.forEach(function (card) {
         card.style.width = cardWidth + 'px';
         card.style.flexBasis = cardWidth + 'px';
       });
 
-      speciesTrack.style.transform = 'translateX(' + (-speciesIndex * (cardWidth + gap)) + 'px)';
+      speciesTrack.style.transform = 'translateX(' + (-speciesIndex * (cardWidth + speciesGap)) + 'px)';
 
       if (speciesPrev) speciesPrev.disabled = speciesIndex === 0;
       if (speciesNext) speciesNext.disabled = speciesIndex >= maxIndex;
 
-      speciesDots.querySelectorAll('.species__dot').forEach(function (dot, i) {
-        dot.classList.toggle('species__dot--active', i === speciesIndex);
-      });
+      updateSpeciesDots();
     }
 
     function goToSpecies(index) {
       speciesIndex = Math.max(0, Math.min(index, getSpeciesMaxIndex()));
+
+      if (isSpeciesMobileScroll() && speciesViewport) {
+        var targetCard = speciesCards[speciesIndex];
+        if (targetCard) {
+          speciesViewport.scrollTo({
+            left: targetCard.offsetLeft,
+            behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
+          });
+        }
+        updateSpeciesDots();
+        return;
+      }
+
       updateSpeciesSlider();
+    }
+
+    function syncSpeciesIndexFromScroll() {
+      if (!isSpeciesMobileScroll() || !speciesViewport) return;
+
+      var viewportCenter = speciesViewport.scrollLeft + speciesViewport.offsetWidth / 2;
+      var nearestIndex = 0;
+      var nearestDistance = Infinity;
+
+      speciesCards.forEach(function (card, index) {
+        var cardCenter = card.offsetLeft + card.offsetWidth / 2;
+        var distance = Math.abs(cardCenter - viewportCenter);
+        if (distance < nearestDistance) {
+          nearestDistance = distance;
+          nearestIndex = index;
+        }
+      });
+
+      if (nearestIndex !== speciesIndex) {
+        speciesIndex = nearestIndex;
+        updateSpeciesDots();
+      }
     }
 
     if (speciesPrev) {
@@ -253,6 +311,10 @@
       if (!dot) return;
       goToSpecies(Number(dot.dataset.index));
     });
+
+    if (speciesViewport) {
+      speciesViewport.addEventListener('scroll', syncSpeciesIndexFromScroll, { passive: true });
+    }
 
     window.addEventListener('resize', function () {
       buildSpeciesDots();
@@ -285,7 +347,14 @@
       { src: 'img/gallery/8.jpg', alt: 'Аквариум AquaDT — проект 8' },
       { src: 'img/gallery/9.jpg', alt: 'Аквариум AquaDT — проект 9' },
       { src: 'img/gallery/10.jpg', alt: 'Аквариум AquaDT — проект 10' },
-      { src: 'img/gallery/11.jpg', alt: 'Аквариум AquaDT — проект 11' }
+      { src: 'img/gallery/11.jpg', alt: 'Аквариум AquaDT — проект 11' },
+      { src: 'img/gallery/12.jpg', alt: 'Аквариум AquaDT — проект 12' },
+      { src: 'img/gallery/13.jpg', alt: 'Аквариум AquaDT — проект 13' },
+      { src: 'img/gallery/14.jpg', alt: 'Аквариум AquaDT — проект 14' },
+      { src: 'img/gallery/15.jpg', alt: 'Аквариум AquaDT — проект 15' },
+      { src: 'img/gallery/16.jpg', alt: 'Аквариум AquaDT — проект 16' },
+      { src: 'img/gallery/17.jpg', alt: 'Аквариум AquaDT — проект 17' },
+      { src: 'img/gallery/18.jpg', alt: 'Аквариум AquaDT — проект 18' }
     ]
   };
 
@@ -415,78 +484,86 @@
 
   var requestForm = document.getElementById('request-form');
   var requestPhone = document.getElementById('request-phone');
+  var requestModal = document.getElementById('request-modal');
+  var requestModalForm = document.getElementById('request-modal-form');
+  var requestModalPhone = document.getElementById('request-modal-phone');
+  var requestModalName = document.getElementById('request-modal-name');
   var requestToast = document.getElementById('request-toast');
   var requestToastClose = document.getElementById('request-toast-close');
   var requestToastTimer;
+  var phonePrefix = '+375 (';
 
-  if (requestPhone) {
-    var phonePrefix = '+375 (';
-
-    function extractPhoneDigits(value) {
-      var digits = value.replace(/\D/g, '');
-      if (digits.indexOf('375') === 0) {
-        return digits.slice(3, 12);
-      }
-      return digits.slice(0, 9);
+  function extractPhoneDigits(value) {
+    var digits = value.replace(/\D/g, '');
+    if (digits.indexOf('375') === 0) {
+      return digits.slice(3, 12);
     }
+    return digits.slice(0, 9);
+  }
 
-    function formatPhoneValue(digits) {
-      if (!digits.length) return '';
+  function formatPhoneValue(digits) {
+    if (!digits.length) return '';
 
-      var formatted = phonePrefix + digits.slice(0, 2);
-      if (digits.length <= 2) return formatted;
+    var formatted = phonePrefix + digits.slice(0, 2);
+    if (digits.length <= 2) return formatted;
 
-      formatted += ') ' + digits.slice(2, 5);
-      if (digits.length <= 5) return formatted;
+    formatted += ') ' + digits.slice(2, 5);
+    if (digits.length <= 5) return formatted;
 
-      formatted += '-' + digits.slice(5, 7);
-      if (digits.length <= 7) return formatted;
+    formatted += '-' + digits.slice(5, 7);
+    if (digits.length <= 7) return formatted;
 
-      return formatted + '-' + digits.slice(7, 9);
-    }
+    return formatted + '-' + digits.slice(7, 9);
+  }
+
+  function initPhoneMask(phoneInput) {
+    if (!phoneInput) return;
 
     function applyPhoneMask() {
-      requestPhone.value = formatPhoneValue(extractPhoneDigits(requestPhone.value));
+      phoneInput.value = formatPhoneValue(extractPhoneDigits(phoneInput.value));
     }
 
     function validatePhone() {
-      var digits = extractPhoneDigits(requestPhone.value);
+      var digits = extractPhoneDigits(phoneInput.value);
       if (!digits.length) {
-        requestPhone.setCustomValidity('');
+        phoneInput.setCustomValidity('');
         return;
       }
       if (digits.length < 9) {
-        requestPhone.setCustomValidity('Введите номер телефона полностью');
+        phoneInput.setCustomValidity('Введите номер телефона полностью');
         return;
       }
-      requestPhone.setCustomValidity('');
+      phoneInput.setCustomValidity('');
     }
 
-    requestPhone.addEventListener('focus', function () {
-      if (!requestPhone.value) {
-        requestPhone.value = phonePrefix;
+    phoneInput.addEventListener('focus', function () {
+      if (!phoneInput.value) {
+        phoneInput.value = phonePrefix;
       }
     });
 
-    requestPhone.addEventListener('input', function () {
+    phoneInput.addEventListener('input', function () {
       applyPhoneMask();
       validatePhone();
     });
 
-    requestPhone.addEventListener('blur', function () {
-      if (!extractPhoneDigits(requestPhone.value).length) {
-        requestPhone.value = '';
+    phoneInput.addEventListener('blur', function () {
+      if (!extractPhoneDigits(phoneInput.value).length) {
+        phoneInput.value = '';
       }
       validatePhone();
     });
 
-    requestPhone.addEventListener('keydown', function (event) {
+    phoneInput.addEventListener('keydown', function (event) {
       if (event.key !== 'Backspace') return;
-      if (extractPhoneDigits(requestPhone.value).length === 0) {
-        requestPhone.value = '';
+      if (extractPhoneDigits(phoneInput.value).length === 0) {
+        phoneInput.value = '';
       }
     });
   }
+
+  initPhoneMask(requestPhone);
+  initPhoneMask(requestModalPhone);
 
   function hideRequestToast() {
     if (!requestToast) return;
@@ -517,7 +594,159 @@
     });
   }
 
+  function openRequestModal() {
+    if (!requestModal) return;
+
+    closeMenu();
+    requestModal.hidden = false;
+    document.body.style.overflow = 'hidden';
+
+    window.requestAnimationFrame(function () {
+      if (requestModalName) {
+        requestModalName.focus();
+      }
+    });
+  }
+
+  function closeRequestModal() {
+    if (!requestModal) return;
+
+    requestModal.hidden = true;
+
+    if (galleryModal && !galleryModal.hidden) return;
+    document.body.style.overflow = '';
+  }
+
+  if (requestModal) {
+    document.querySelectorAll('a.btn[href="#request"]').forEach(function (trigger) {
+      trigger.addEventListener('click', function (event) {
+        event.preventDefault();
+        openRequestModal();
+      });
+    });
+
+    requestModal.querySelectorAll('[data-request-close]').forEach(function (el) {
+      el.addEventListener('click', closeRequestModal);
+    });
+  }
+
+  if (requestModalForm && requestToast) {
+    requestModalForm.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      if (!requestModalForm.reportValidity()) return;
+
+      requestModalForm.reset();
+      closeRequestModal();
+      showRequestToast();
+    });
+  }
+
+  document.addEventListener('keydown', function (event) {
+    if (event.key !== 'Escape') return;
+    if (requestModal && !requestModal.hidden) {
+      closeRequestModal();
+    }
+  });
+
   if (requestToastClose) {
     requestToastClose.addEventListener('click', hideRequestToast);
+  }
+
+  var faqRoot = document.getElementById('why-us-faq');
+
+  if (faqRoot) {
+    var faqItems = faqRoot.querySelectorAll('.why-us__item');
+
+    faqItems.forEach(function (item) {
+      var question = item.querySelector('.why-us__question');
+      if (!question) return;
+
+      question.addEventListener('click', function () {
+        var isOpen = item.classList.contains('why-us__item--open');
+
+        faqItems.forEach(function (other) {
+          other.classList.remove('why-us__item--open');
+          var otherQuestion = other.querySelector('.why-us__question');
+          if (otherQuestion) {
+            otherQuestion.setAttribute('aria-expanded', 'false');
+          }
+        });
+
+        if (!isOpen) {
+          item.classList.add('why-us__item--open');
+          question.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  }
+
+  var revealSelectors = [
+    '.hero__feature',
+    '.services__header',
+    '.services__item',
+    '.custom-order__content',
+    '.custom-order__image',
+    '.species__header',
+    '.species__slider',
+    '.decoration-styles__header',
+    '.decoration-styles__layout',
+    '.forwho__header',
+    '.forwho__card',
+    '.maintenance__content',
+    '.maintenance__services-wrap',
+    '.works-gallery__header',
+    '.works-gallery__item',
+    '.works-gallery__cta',
+    '.work-stages__header',
+    '.work-stages__step',
+    '.why-us__intro',
+    '.why-us__faq',
+    '.promo-split__panel',
+    '.request__intro',
+    '.request__panel',
+    '.footer__brand',
+    '.footer__nav',
+    '.footer__bottom'
+  ];
+
+  var revealElements = document.querySelectorAll(revealSelectors.join(', '));
+
+  if (revealElements.length && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var staggerGroups = [
+      { parent: '.hero__features', child: '.hero__feature' },
+      { parent: '.services__grid', child: '.services__item' },
+      { parent: '.forwho__grid', child: '.forwho__card' },
+      { parent: '.works-gallery__grid', child: '.works-gallery__item' },
+      { parent: '.work-stages__timeline', child: '.work-stages__step' }
+    ];
+
+    revealElements.forEach(function (el) {
+      el.classList.add('reveal');
+    });
+
+    staggerGroups.forEach(function (group) {
+      var parent = document.querySelector(group.parent);
+      if (!parent) return;
+
+      parent.querySelectorAll(group.child).forEach(function (child, index) {
+        child.style.setProperty('--reveal-delay', (index * 70) + 'ms');
+      });
+    });
+
+    var revealObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('reveal--visible');
+        revealObserver.unobserve(entry.target);
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    revealElements.forEach(function (el) {
+      revealObserver.observe(el);
+    });
   }
 })();
