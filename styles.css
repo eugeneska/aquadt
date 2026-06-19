@@ -364,9 +364,8 @@ ul {
 }
 
 .hero.hero--released {
-  position: absolute;
-  top: auto;
-  bottom: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .hero__bg {
@@ -570,8 +569,8 @@ ul {
   }
 
   .hero.hero--released {
-    position: relative;
-    bottom: auto;
+    visibility: visible;
+    pointer-events: auto;
   }
 
   .services {
@@ -724,6 +723,8 @@ ul {
 
 /* ===== Custom order ===== */
 .custom-order {
+  position: relative;
+  z-index: 2;
   padding: 0;
   background: var(--bg-primary);
 }
