@@ -620,12 +620,19 @@
     });
   }
 
-  function openRequestModal() {
+  var requestModalAlt = document.getElementById('request-modal-alt');
+  var phoneFab = document.getElementById('phone-fab');
+
+  function openRequestModal(showPhoneAlt) {
     if (!requestModal) return;
 
     closeMenu();
     requestModal.hidden = false;
     document.body.style.overflow = 'hidden';
+
+    if (requestModalAlt) {
+      requestModalAlt.hidden = !showPhoneAlt;
+    }
 
     window.requestAnimationFrame(function () {
       if (requestModalName) {
@@ -639,6 +646,10 @@
 
     requestModal.hidden = true;
 
+    if (requestModalAlt) {
+      requestModalAlt.hidden = true;
+    }
+
     if (galleryModal && !galleryModal.hidden) return;
     document.body.style.overflow = '';
   }
@@ -647,12 +658,18 @@
     document.querySelectorAll('a.btn[href="#request"]').forEach(function (trigger) {
       trigger.addEventListener('click', function (event) {
         event.preventDefault();
-        openRequestModal();
+        openRequestModal(false);
       });
     });
 
     requestModal.querySelectorAll('[data-request-close]').forEach(function (el) {
       el.addEventListener('click', closeRequestModal);
+    });
+  }
+
+  if (phoneFab) {
+    phoneFab.addEventListener('click', function () {
+      openRequestModal(true);
     });
   }
 

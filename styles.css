@@ -2314,6 +2314,37 @@ ul {
   margin: 0;
 }
 
+.request-modal__alt {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+.request-modal__alt[hidden] {
+  display: none;
+}
+
+.request-modal__alt-text {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+
+.request-modal__phone {
+  display: inline-block;
+  font-size: clamp(18px, 3vw, 22px);
+  font-weight: 600;
+  color: var(--accent-light);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.request-modal__phone:hover {
+  color: var(--accent-hover);
+}
+
 /* ===== Request form ===== */
 .request {
   padding: 96px 0 104px;
@@ -2520,10 +2551,13 @@ ul {
   justify-content: center;
   width: 56px;
   height: 56px;
+  padding: 0;
+  border: none;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--accent-light), var(--accent));
   color: #fff;
   box-shadow: 0 8px 28px var(--accent-glow);
+  cursor: pointer;
   transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
 }
 
