@@ -138,12 +138,35 @@
     return Boolean(stylesPin && stylesPinBreakpoint.matches && !reduceMotion.matches);
   }
 
+  function getStylesSection() {
+    return stylesPin ? stylesPin.querySelector('.decoration-styles') : null;
+  }
+
+  function measureStylesSectionHeight() {
+    var section = getStylesSection();
+    if (!section) return window.innerHeight;
+    return Math.max(section.offsetHeight, window.innerHeight);
+  }
+
+  function getStylesScrollRange() {
+    if (!stylesPin) return 0;
+
+    var sectionHeight = measureStylesSectionHeight();
+    return Math.max(0, stylesPin.offsetHeight - sectionHeight);
+  }
+
   function updateStylesPinHeight() {
     if (!stylesPin) return;
 
     if (isStylesPinActive()) {
+      var sectionHeight = measureStylesSectionHeight();
+      var step = window.innerHeight;
+      var pinHeight = sectionHeight + Math.max(0, styleData.length - 1) * step;
+
+      stylesPin.style.height = pinHeight + 'px';
       stylesPin.style.setProperty('--styles-count', String(styleData.length));
     } else {
+      stylesPin.style.height = '';
       stylesPin.style.removeProperty('--styles-count');
     }
   }
@@ -152,7 +175,7 @@
     if (!stylesPin) return 0;
 
     var rect = stylesPin.getBoundingClientRect();
-    var scrollRange = stylesPin.offsetHeight - window.innerHeight;
+    var scrollRange = getStylesScrollRange();
 
     if (scrollRange <= 0) return 0;
 
@@ -178,7 +201,7 @@
       return;
     }
 
-    var scrollRange = stylesPin.offsetHeight - window.innerHeight;
+    var scrollRange = getStylesScrollRange();
     var progress = styleData.length > 1 ? index / (styleData.length - 1) : 0;
     var target = stylesPin.offsetTop + progress * scrollRange;
 
@@ -244,6 +267,8 @@
         if (styleContent) {
           styleContent.classList.remove('decoration-styles__content--fade');
         }
+
+        updateStylesPinHeight();
       }, 150);
     }
 
@@ -266,6 +291,14 @@
 
     updateStylesPinHeight();
     updateStylesScrollPin();
+
+    var stylesSection = getStylesSection();
+    if (stylesSection && 'ResizeObserver' in window) {
+      var stylesResizeObserver = new ResizeObserver(function () {
+        updateStylesPinHeight();
+      });
+      stylesResizeObserver.observe(stylesSection);
+    }
 
     stylesPinBreakpoint.addEventListener('change', function () {
       updateStylesPinHeight();
