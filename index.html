@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aqua Design Technology — Аквариумы под ключ в Беларуси</title>
   <meta name="description" content="Проектируем, изготавливаем, оформляем, устанавливаем и обслуживаем аквариумы для квартир, домов, офисов и ресторанов в Беларуси.">
+  <link rel="preload" as="image" href="img/back2.webp" type="image/webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -25,18 +26,26 @@
           <li><a href="#styles" class="header__link">Стили</a></li>
           <li><a href="#service" class="header__link">Обслуживание</a></li>
           <li><a href="#stages" class="header__link">Этапы работы</a></li>
-          <li><a href="#request" class="header__link">Заявка</a></li>
         </ul>
         <div class="header__actions header__actions--mobile">
           <div class="header__icons">
             <a href="https://www.instagram.com/1aquadt.by" target="_blank" rel="noopener noreferrer" class="header__icon-link" aria-label="Instagram">
               <img src="img/inst.svg" alt="" width="24" height="24" aria-hidden="true">
             </a>
+            <a href="https://t.me/aquadt" target="_blank" rel="noopener noreferrer" class="header__icon-link" aria-label="Telegram">
+              <img src="img/tg.svg" alt="" width="24" height="24" aria-hidden="true">
+            </a>
+            <a href="https://api.whatsapp.com/send?phone=375296565242" target="_blank" rel="noopener noreferrer" class="header__icon-link" aria-label="WhatsApp">
+              <img src="img/wa.svg" alt="" width="24" height="24" aria-hidden="true">
+            </a>
             <a href="https://aquadt.by" target="_blank" rel="noopener noreferrer" class="header__icon-link" aria-label="Основной сайт">
               <img src="img/site.svg" alt="" width="24" height="24" aria-hidden="true">
             </a>
           </div>
-          <a href="#request" class="btn btn--primary btn--sm">Получить консультацию</a>
+          <a href="tel:+375293748726" class="header__call">
+            <span class="header__call-label">Позвонить</span>
+            <span class="header__call-number">+375 (29) 374-87-26</span>
+          </a>
         </div>
       </nav>
 
@@ -45,11 +54,20 @@
           <a href="https://www.instagram.com/1aquadt.by" target="_blank" rel="noopener noreferrer" class="header__icon-link" aria-label="Instagram">
             <img src="img/inst.svg" alt="" width="24" height="24" aria-hidden="true">
           </a>
+          <a href="https://t.me/aquadt" target="_blank" rel="noopener noreferrer" class="header__icon-link" aria-label="Telegram">
+            <img src="img/tg.svg" alt="" width="24" height="24" aria-hidden="true">
+          </a>
+          <a href="https://api.whatsapp.com/send?phone=375296565242" target="_blank" rel="noopener noreferrer" class="header__icon-link" aria-label="WhatsApp">
+            <img src="img/wa.svg" alt="" width="24" height="24" aria-hidden="true">
+          </a>
           <a href="https://aquadt.by" target="_blank" rel="noopener noreferrer" class="header__icon-link" aria-label="Основной сайт">
             <img src="img/site.svg" alt="" width="24" height="24" aria-hidden="true">
           </a>
         </div>
-        <a href="#request" class="btn btn--primary btn--sm">Получить консультацию</a>
+        <a href="tel:+375293748726" class="header__call">
+          <span class="header__call-label">Позвонить</span>
+          <span class="header__call-number">+375 (29) 374-87-26</span>
+        </a>
       </div>
 
       <button class="header__burger" id="burger" aria-label="Открыть меню" aria-expanded="false">
@@ -64,7 +82,7 @@
   <div class="hero-pin">
   <section class="hero" id="hero">
     <div class="hero__bg" aria-hidden="true">
-      <img src="img/back2.jpg" alt="" class="hero__bg-image" loading="eager" fetchpriority="high">
+      <img src="img/back2.webp" alt="" class="hero__bg-image" loading="eager" fetchpriority="high" decoding="async">
       <div class="hero__bg-overlay"></div>
     </div>
 
@@ -211,17 +229,19 @@
         <a href="#request" class="btn btn--primary btn--lg custom-order__cta">Обсудить проект</a>
       </div>
       <img
-        src="img/order.jpg"
+        src="img/order.webp"
         alt="Аквариум как часть интерьера"
         class="custom-order__image"
         loading="lazy"
         width="720"
         height="540"
+        decoding="async"
       >
     </div>
   </section>
 
   <!-- Aquarium types -->
+  <!--
   <section class="species" id="aquarium-types">
     <div class="container">
       <div class="species__header">
@@ -357,8 +377,10 @@
       </div>
     </div>
   </section>
+  -->
 
   <!-- Decoration styles -->
+  <div class="decoration-styles-pin" id="styles-pin">
   <section class="decoration-styles" id="styles">
     <div class="container">
       <div class="decoration-styles__header">
@@ -379,7 +401,7 @@
 
         <div class="decoration-styles__panel" id="style-panel" role="tabpanel" aria-labelledby="style-tab-0">
           <div class="decoration-styles__image-wrap">
-            <img src="img/styles/1.jpg" alt="Псевдоморе" class="decoration-styles__image" id="style-image" loading="lazy" width="560" height="420">
+            <img src="img/styles/1.webp" alt="Псевдоморе" class="decoration-styles__image" id="style-image" loading="lazy" width="560" height="420" decoding="async">
           </div>
           <div class="decoration-styles__content">
             <h3 class="decoration-styles__panel-title" id="style-title">Псевдоморе</h3>
@@ -397,6 +419,7 @@
       </div>
     </div>
   </section>
+  </div>
 
   <!-- For who -->
   <section class="forwho" id="forwho">
@@ -486,7 +509,7 @@
   <!-- Service maintenance -->
   <section class="maintenance" id="service">
     <div class="maintenance__bg" aria-hidden="true">
-      <img src="img/serviceback.jpg" alt="" class="maintenance__bg-image" loading="lazy">
+      <img src="img/serviceback.webp" alt="" class="maintenance__bg-image" loading="lazy" decoding="async">
       <div class="maintenance__bg-overlay"></div>
     </div>
 
@@ -543,67 +566,67 @@
 
       <div class="works-gallery__grid">
         <button type="button" class="works-gallery__item works-gallery__item--featured" data-gallery-set="works" data-gallery-index="0" aria-label="Открыть фото 1">
-          <img src="img/gallery/1.jpg" alt="Аквариум AquaDT — проект 1" loading="lazy" width="800" height="600">
+          <img src="img/gallery/1.webp" alt="Аквариум AquaDT — проект 1" loading="lazy" width="800" height="600" decoding="async">
           <span class="works-gallery__overlay" aria-hidden="true">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M15 3H21V9M9 21H3V15M21 3L14 10M3 21L10 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </span>
         </button>
         <button type="button" class="works-gallery__item" data-gallery-set="works" data-gallery-index="1" aria-label="Открыть фото 2">
-          <img src="img/gallery/2.jpg" alt="Аквариум AquaDT — проект 2" loading="lazy" width="400" height="300">
+          <img src="img/gallery/2.webp" alt="Аквариум AquaDT — проект 2" loading="lazy" width="400" height="300" decoding="async">
           <span class="works-gallery__overlay" aria-hidden="true">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 3H21V9M9 21H3V15M21 3L14 10M3 21L10 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </span>
         </button>
         <button type="button" class="works-gallery__item" data-gallery-set="works" data-gallery-index="2" aria-label="Открыть фото 3">
-          <img src="img/gallery/3.jpg" alt="Аквариум AquaDT — проект 3" loading="lazy" width="400" height="300">
+          <img src="img/gallery/3.webp" alt="Аквариум AquaDT — проект 3" loading="lazy" width="400" height="300" decoding="async">
           <span class="works-gallery__overlay" aria-hidden="true">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 3H21V9M9 21H3V15M21 3L14 10M3 21L10 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </span>
         </button>
         <button type="button" class="works-gallery__item" data-gallery-set="works" data-gallery-index="3" aria-label="Открыть фото 4">
-          <img src="img/gallery/4.jpg" alt="Аквариум AquaDT — проект 4" loading="lazy" width="400" height="300">
+          <img src="img/gallery/4.webp" alt="Аквариум AquaDT — проект 4" loading="lazy" width="400" height="300" decoding="async">
           <span class="works-gallery__overlay" aria-hidden="true">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 3H21V9M9 21H3V15M21 3L14 10M3 21L10 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </span>
         </button>
         <button type="button" class="works-gallery__item" data-gallery-set="works" data-gallery-index="4" aria-label="Открыть фото 5">
-          <img src="img/gallery/5.jpg" alt="Аквариум AquaDT — проект 5" loading="lazy" width="400" height="300">
+          <img src="img/gallery/5.webp" alt="Аквариум AquaDT — проект 5" loading="lazy" width="400" height="300" decoding="async">
           <span class="works-gallery__overlay" aria-hidden="true">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 3H21V9M9 21H3V15M21 3L14 10M3 21L10 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </span>
         </button>
         <button type="button" class="works-gallery__item works-gallery__item--wide" data-gallery-set="works" data-gallery-index="5" aria-label="Открыть фото 6">
-          <img src="img/gallery/6.jpg" alt="Аквариум AquaDT — проект 6" loading="lazy" width="600" height="300">
+          <img src="img/gallery/6.webp" alt="Аквариум AquaDT — проект 6" loading="lazy" width="600" height="300" decoding="async">
           <span class="works-gallery__overlay" aria-hidden="true">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 3H21V9M9 21H3V15M21 3L14 10M3 21L10 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </span>
         </button>
         <button type="button" class="works-gallery__item" data-gallery-set="works" data-gallery-index="6" aria-label="Открыть фото 7">
-          <img src="img/gallery/7.jpg" alt="Аквариум AquaDT — проект 7" loading="lazy" width="400" height="300">
+          <img src="img/gallery/7.webp" alt="Аквариум AquaDT — проект 7" loading="lazy" width="400" height="300" decoding="async">
           <span class="works-gallery__overlay" aria-hidden="true">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 3H21V9M9 21H3V15M21 3L14 10M3 21L10 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </span>
         </button>
         <button type="button" class="works-gallery__item" data-gallery-set="works" data-gallery-index="7" aria-label="Открыть фото 8">
-          <img src="img/gallery/8.jpg" alt="Аквариум AquaDT — проект 8" loading="lazy" width="400" height="300">
+          <img src="img/gallery/8.webp" alt="Аквариум AquaDT — проект 8" loading="lazy" width="400" height="300" decoding="async">
           <span class="works-gallery__overlay" aria-hidden="true">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 3H21V9M9 21H3V15M21 3L14 10M3 21L10 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </span>
         </button>
         <button type="button" class="works-gallery__item" data-gallery-set="works" data-gallery-index="8" aria-label="Открыть фото 9">
-          <img src="img/gallery/9.jpg" alt="Аквариум AquaDT — проект 9" loading="lazy" width="400" height="300">
+          <img src="img/gallery/9.webp" alt="Аквариум AquaDT — проект 9" loading="lazy" width="400" height="300" decoding="async">
           <span class="works-gallery__overlay" aria-hidden="true">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 3H21V9M9 21H3V15M21 3L14 10M3 21L10 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </span>
         </button>
         <button type="button" class="works-gallery__item works-gallery__item--wide" data-gallery-set="works" data-gallery-index="9" aria-label="Открыть фото 10">
-          <img src="img/gallery/10.jpg" alt="Аквариум AquaDT — проект 10" loading="lazy" width="600" height="300">
+          <img src="img/gallery/10.webp" alt="Аквариум AquaDT — проект 10" loading="lazy" width="600" height="300" decoding="async">
           <span class="works-gallery__overlay" aria-hidden="true">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 3H21V9M9 21H3V15M21 3L14 10M3 21L10 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </span>
         </button>
         <button type="button" class="works-gallery__item" data-gallery-set="works" data-gallery-index="10" aria-label="Открыть фото 11">
-          <img src="img/gallery/11.jpg" alt="Аквариум AquaDT — проект 11" loading="lazy" width="400" height="300">
+          <img src="img/gallery/11.webp" alt="Аквариум AquaDT — проект 11" loading="lazy" width="400" height="300" decoding="async">
           <span class="works-gallery__overlay" aria-hidden="true">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 3H21V9M9 21H3V15M21 3L14 10M3 21L10 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </span>
@@ -611,6 +634,9 @@
       </div>
 
       <div class="works-gallery__cta">
+        <button type="button" class="btn btn--primary btn--lg" data-gallery-set="works" data-gallery-index="11" aria-label="Смотреть еще 22 работ">
+          Смотреть еще <span id="works-more-count">22</span>
+        </button>
         <a href="https://www.instagram.com/1aquadt.by" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--lg">
           <img src="img/inst.svg" alt="" class="btn__icon" width="22" height="22" aria-hidden="true">
           Больше работ в&nbsp;Instagram
@@ -778,22 +804,22 @@
           <p class="promo-split__desc">Посмотрите реальные аквариумы, оформление, детали обслуживания и&nbsp;свежие проекты Aqua Design Technology.</p>
           <div class="promo-split__grid">
             <button type="button" class="promo-split__photo" data-gallery-set="projects" data-gallery-index="0" aria-label="Открыть фото 1">
-              <img src="img/projects/1.jpg" alt="Проект AquaDT 1" loading="lazy" width="320" height="320">
+              <img src="img/projects/1.webp" alt="Проект AquaDT 1" loading="lazy" width="320" height="320" decoding="async">
             </button>
             <button type="button" class="promo-split__photo" data-gallery-set="projects" data-gallery-index="1" aria-label="Открыть фото 2">
-              <img src="img/projects/2.jpg" alt="Проект AquaDT 2" loading="lazy" width="320" height="320">
+              <img src="img/projects/2.webp" alt="Проект AquaDT 2" loading="lazy" width="320" height="320" decoding="async">
             </button>
             <button type="button" class="promo-split__photo" data-gallery-set="projects" data-gallery-index="2" aria-label="Открыть фото 3">
-              <img src="img/projects/3.jpg" alt="Проект AquaDT 3" loading="lazy" width="320" height="320">
+              <img src="img/projects/3.webp" alt="Проект AquaDT 3" loading="lazy" width="320" height="320" decoding="async">
             </button>
             <button type="button" class="promo-split__photo" data-gallery-set="projects" data-gallery-index="3" aria-label="Открыть фото 4">
-              <img src="img/projects/4.jpg" alt="Проект AquaDT 4" loading="lazy" width="320" height="320">
+              <img src="img/projects/4.webp" alt="Проект AquaDT 4" loading="lazy" width="320" height="320" decoding="async">
             </button>
             <button type="button" class="promo-split__photo" data-gallery-set="projects" data-gallery-index="4" aria-label="Открыть фото 5">
-              <img src="img/projects/5.jpg" alt="Проект AquaDT 5" loading="lazy" width="320" height="320">
+              <img src="img/projects/5.webp" alt="Проект AquaDT 5" loading="lazy" width="320" height="320" decoding="async">
             </button>
             <button type="button" class="promo-split__photo" data-gallery-set="projects" data-gallery-index="5" aria-label="Открыть фото 6">
-              <img src="img/projects/6.jpg" alt="Проект AquaDT 6" loading="lazy" width="320" height="320">
+              <img src="img/projects/6.webp" alt="Проект AquaDT 6" loading="lazy" width="320" height="320" decoding="async">
             </button>
           </div>
           <a href="https://www.instagram.com/1aquadt.by" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--lg promo-split__btn"><img src="img/inst.svg" alt="" class="btn__icon" width="22" height="22" aria-hidden="true">Перейти в&nbsp;Instagram</a>
@@ -811,7 +837,7 @@
               <span class="promo-split__monitor-dot"></span>
             </div>
             <div class="promo-split__monitor-screen">
-              <img src="img/mainpage.png" alt="Скриншот основного сайта Aqua Design Technology" loading="lazy" width="640" height="400">
+              <img src="img/mainpage.webp" alt="Скриншот основного сайта Aqua Design Technology" loading="lazy" width="640" height="400" decoding="async">
             </div>
             <div class="promo-split__monitor-stand"></div>
           </div>

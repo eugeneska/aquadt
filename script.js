@@ -30,6 +30,7 @@
   function onScroll() {
     header.classList.toggle('header--scrolled', window.scrollY > 20);
     updateHeroParallax();
+    updateStylesScrollPin();
   }
 
   function closeMenu() {
@@ -65,7 +66,7 @@
   var styleData = [
     {
       title: 'Псевдоморе',
-      image: 'img/styles/1.jpg',
+      image: 'img/styles/1.webp',
       desc: 'Яркая и\u00a0декоративная эстетика морского рифа в\u00a0пресной воде\u00a0— идеальный баланс между эффектностью и\u00a0простотой обслуживания.',
       features: [
         'Яркие рыбки',
@@ -76,7 +77,7 @@
     },
     {
       title: 'Природный стиль',
-      image: 'img/styles/2.jpg',
+      image: 'img/styles/2.webp',
       desc: 'Аквариум, вдохновлённый природными ландшафтами\u00a0— спокойная эстетика живой природы для гармоничного интерьера.',
       features: [
         'Натуральные коряги',
@@ -87,7 +88,7 @@
     },
     {
       title: 'Hardscape',
-      image: 'img/styles/3.jpg',
+      image: 'img/styles/3.webp',
       desc: 'Строгая композиция, где главную роль играет структура ландшафта\u00a0— минималистичный и\u00a0выразительный интерьерный акцент.',
       features: [
         'Камни, коряги, грунт',
@@ -98,7 +99,7 @@
     },
     {
       title: 'Морской стиль',
-      image: 'img/styles/4.jpg',
+      image: 'img/styles/4.webp',
       desc: 'Премиальный вариант с\u00a0атмосферой настоящего кораллового рифа\u00a0— для тех, кто хочет максимально впечатляющий аквариум.',
       features: [
         'Коралловый риф',
@@ -109,7 +110,7 @@
     },
     {
       title: 'Японский стиль с живыми растениями',
-      image: 'img/styles/5.jpg',
+      image: 'img/styles/5.webp',
       desc: 'Акваскейп как цельная подводная композиция\u00a0— гармония, баланс и\u00a0философия Nature Aquarium в\u00a0вашем интерьере.',
       features: [
         'Подводный сад',
@@ -128,6 +129,64 @@
   var styleFeatures = document.getElementById('style-features');
   var stylePanel = document.getElementById('style-panel');
   var styleContent = document.querySelector('.decoration-styles__content');
+  var stylesPin = document.getElementById('styles-pin');
+  var currentStyleIndex = 0;
+  var stylesPinBreakpoint = window.matchMedia('(min-width: 961px)');
+  var setActiveStyle = function () {};
+
+  function isStylesPinActive() {
+    return Boolean(stylesPin && stylesPinBreakpoint.matches && !reduceMotion.matches);
+  }
+
+  function updateStylesPinHeight() {
+    if (!stylesPin) return;
+
+    if (isStylesPinActive()) {
+      stylesPin.style.setProperty('--styles-count', String(styleData.length));
+    } else {
+      stylesPin.style.removeProperty('--styles-count');
+    }
+  }
+
+  function getStyleIndexFromScroll() {
+    if (!stylesPin) return 0;
+
+    var rect = stylesPin.getBoundingClientRect();
+    var scrollRange = stylesPin.offsetHeight - window.innerHeight;
+
+    if (scrollRange <= 0) return 0;
+
+    var scrolled = -rect.top;
+    var progress = Math.min(Math.max(scrolled / scrollRange, 0), 1);
+
+    if (styleData.length <= 1) return 0;
+
+    return Math.min(
+      styleData.length - 1,
+      Math.round(progress * (styleData.length - 1))
+    );
+  }
+
+  function updateStylesScrollPin() {
+    if (!isStylesPinActive()) return;
+    setActiveStyle(getStyleIndexFromScroll(), { animate: true });
+  }
+
+  function scrollToStyleIndex(index) {
+    if (!stylesPin || !isStylesPinActive()) {
+      setActiveStyle(index);
+      return;
+    }
+
+    var scrollRange = stylesPin.offsetHeight - window.innerHeight;
+    var progress = styleData.length > 1 ? index / (styleData.length - 1) : 0;
+    var target = stylesPin.offsetTop + progress * scrollRange;
+
+    window.scrollTo({
+      top: target,
+      behavior: reduceMotion.matches ? 'auto' : 'smooth'
+    });
+  }
 
   if (styleImage && styleDesc && styleFeatures && (styleTabs.length || styleSelect)) {
     if (styleSelect) {
@@ -139,9 +198,13 @@
       });
     }
 
-    function setActiveStyle(index) {
+    setActiveStyle = function (index, options) {
+      options = options || {};
       var data = styleData[index];
       if (!data) return;
+
+      if (index === currentStyleIndex && !options.force) return;
+      currentStyleIndex = index;
 
       styleTabs.forEach(function (tab, i) {
         var isActive = i === index;
@@ -186,7 +249,12 @@
 
     styleTabs.forEach(function (tab) {
       tab.addEventListener('click', function () {
-        setActiveStyle(Number(tab.dataset.index));
+        var index = Number(tab.dataset.index);
+        if (isStylesPinActive()) {
+          scrollToStyleIndex(index);
+        } else {
+          setActiveStyle(index);
+        }
       });
     });
 
@@ -195,6 +263,16 @@
         setActiveStyle(Number(styleSelect.value));
       });
     }
+
+    updateStylesPinHeight();
+    updateStylesScrollPin();
+
+    stylesPinBreakpoint.addEventListener('change', function () {
+      updateStylesPinHeight();
+      updateStylesScrollPin();
+    });
+
+    window.addEventListener('resize', updateStylesPinHeight, { passive: true });
   }
 
   var speciesSlider = document.getElementById('species-slider');
@@ -353,34 +431,49 @@
 
   var gallerySets = {
     projects: [
-      { src: 'img/projects/1.jpg', alt: 'Проект AquaDT 1' },
-      { src: 'img/projects/2.jpg', alt: 'Проект AquaDT 2' },
-      { src: 'img/projects/3.jpg', alt: 'Проект AquaDT 3' },
-      { src: 'img/projects/4.jpg', alt: 'Проект AquaDT 4' },
-      { src: 'img/projects/5.jpg', alt: 'Проект AquaDT 5' },
-      { src: 'img/projects/6.jpg', alt: 'Проект AquaDT 6' },
-      { src: 'img/projects/7.jpg', alt: 'Проект AquaDT 7' },
-      { src: 'img/projects/8.jpg', alt: 'Проект AquaDT 8' }
+      { src: 'img/projects/1.webp', alt: 'Проект AquaDT 1' },
+      { src: 'img/projects/2.webp', alt: 'Проект AquaDT 2' },
+      { src: 'img/projects/3.webp', alt: 'Проект AquaDT 3' },
+      { src: 'img/projects/4.webp', alt: 'Проект AquaDT 4' },
+      { src: 'img/projects/5.webp', alt: 'Проект AquaDT 5' },
+      { src: 'img/projects/6.webp', alt: 'Проект AquaDT 6' },
+      { src: 'img/projects/7.webp', alt: 'Проект AquaDT 7' },
+      { src: 'img/projects/8.webp', alt: 'Проект AquaDT 8' }
     ],
     works: [
-      { src: 'img/gallery/1.jpg', alt: 'Аквариум AquaDT — проект 1' },
-      { src: 'img/gallery/2.jpg', alt: 'Аквариум AquaDT — проект 2' },
-      { src: 'img/gallery/3.jpg', alt: 'Аквариум AquaDT — проект 3' },
-      { src: 'img/gallery/4.jpg', alt: 'Аквариум AquaDT — проект 4' },
-      { src: 'img/gallery/5.jpg', alt: 'Аквариум AquaDT — проект 5' },
-      { src: 'img/gallery/6.jpg', alt: 'Аквариум AquaDT — проект 6' },
-      { src: 'img/gallery/7.jpg', alt: 'Аквариум AquaDT — проект 7' },
-      { src: 'img/gallery/8.jpg', alt: 'Аквариум AquaDT — проект 8' },
-      { src: 'img/gallery/9.jpg', alt: 'Аквариум AquaDT — проект 9' },
-      { src: 'img/gallery/10.jpg', alt: 'Аквариум AquaDT — проект 10' },
-      { src: 'img/gallery/11.jpg', alt: 'Аквариум AquaDT — проект 11' },
-      { src: 'img/gallery/12.jpg', alt: 'Аквариум AquaDT — проект 12' },
-      { src: 'img/gallery/13.jpg', alt: 'Аквариум AquaDT — проект 13' },
-      { src: 'img/gallery/14.jpg', alt: 'Аквариум AquaDT — проект 14' },
-      { src: 'img/gallery/15.jpg', alt: 'Аквариум AquaDT — проект 15' },
-      { src: 'img/gallery/16.jpg', alt: 'Аквариум AquaDT — проект 16' },
-      { src: 'img/gallery/17.jpg', alt: 'Аквариум AquaDT — проект 17' },
-      { src: 'img/gallery/18.jpg', alt: 'Аквариум AquaDT — проект 18' }
+      { src: 'img/gallery/1.webp', alt: 'Аквариум AquaDT — проект 1' },
+      { src: 'img/gallery/2.webp', alt: 'Аквариум AquaDT — проект 2' },
+      { src: 'img/gallery/3.webp', alt: 'Аквариум AquaDT — проект 3' },
+      { src: 'img/gallery/4.webp', alt: 'Аквариум AquaDT — проект 4' },
+      { src: 'img/gallery/5.webp', alt: 'Аквариум AquaDT — проект 5' },
+      { src: 'img/gallery/6.webp', alt: 'Аквариум AquaDT — проект 6' },
+      { src: 'img/gallery/7.webp', alt: 'Аквариум AquaDT — проект 7' },
+      { src: 'img/gallery/8.webp', alt: 'Аквариум AquaDT — проект 8' },
+      { src: 'img/gallery/9.webp', alt: 'Аквариум AquaDT — проект 9' },
+      { src: 'img/gallery/10.webp', alt: 'Аквариум AquaDT — проект 10' },
+      { src: 'img/gallery/11.webp', alt: 'Аквариум AquaDT — проект 11' },
+      { src: 'img/gallery/12.webp', alt: 'Аквариум AquaDT — проект 12' },
+      { src: 'img/gallery/13.webp', alt: 'Аквариум AquaDT — проект 13' },
+      { src: 'img/gallery/14.webp', alt: 'Аквариум AquaDT — проект 14' },
+      { src: 'img/gallery/15.webp', alt: 'Аквариум AquaDT — проект 15' },
+      { src: 'img/gallery/16.webp', alt: 'Аквариум AquaDT — проект 16' },
+      { src: 'img/gallery/17.webp', alt: 'Аквариум AquaDT — проект 17' },
+      { src: 'img/gallery/18.webp', alt: 'Аквариум AquaDT — проект 18' },
+      { src: 'img/gallery/19.webp', alt: 'Аквариум AquaDT — проект 19' },
+      { src: 'img/gallery/20.webp', alt: 'Аквариум AquaDT — проект 20' },
+      { src: 'img/gallery/21.webp', alt: 'Аквариум AquaDT — проект 21' },
+      { src: 'img/gallery/22.webp', alt: 'Аквариум AquaDT — проект 22' },
+      { src: 'img/gallery/23.webp', alt: 'Аквариум AquaDT — проект 23' },
+      { src: 'img/gallery/24.webp', alt: 'Аквариум AquaDT — проект 24' },
+      { src: 'img/gallery/25.webp', alt: 'Аквариум AquaDT — проект 25' },
+      { src: 'img/gallery/26.webp', alt: 'Аквариум AquaDT — проект 26' },
+      { src: 'img/gallery/27.webp', alt: 'Аквариум AquaDT — проект 27' },
+      { src: 'img/gallery/28.webp', alt: 'Аквариум AquaDT — проект 28' },
+      { src: 'img/gallery/29.webp', alt: 'Аквариум AquaDT — проект 29' },
+      { src: 'img/gallery/30.webp', alt: 'Аквариум AquaDT — проект 30' },
+      { src: 'img/gallery/31.webp', alt: 'Аквариум AquaDT — проект 31' },
+      { src: 'img/gallery/32.webp', alt: 'Аквариум AquaDT — проект 32' },
+      { src: 'img/gallery/33.webp', alt: 'Аквариум AquaDT — проект 33' },
     ]
   };
 
@@ -390,14 +483,20 @@
   var galleryPrev = document.getElementById('gallery-prev');
   var galleryNext = document.getElementById('gallery-next');
   var galleryCounter = document.getElementById('gallery-counter');
-  var galleryTriggers = document.querySelectorAll('[data-gallery-set]');
   var currentGallerySet = 'projects';
   var builtGallerySet = null;
   var galleryIndex = 0;
   var galleryTouchStartX = 0;
   var galleryTouchDeltaX = 0;
+  var worksMoreCount = document.getElementById('works-more-count');
+  var worksGalleryStartIndex = 11;
 
-  if (galleryModal && galleryTrack && galleryViewport && galleryTriggers.length) {
+  if (gallerySets.works && worksMoreCount) {
+    var worksMoreTotal = Math.max(0, gallerySets.works.length - worksGalleryStartIndex);
+    worksMoreCount.textContent = String(worksMoreTotal);
+  }
+
+  if (galleryModal && galleryTrack && galleryViewport) {
     function getGalleryImages() {
       return gallerySets[currentGallerySet] || [];
     }
@@ -457,10 +556,10 @@
       updateGallery();
     }
 
-    galleryTriggers.forEach(function (trigger) {
-      trigger.addEventListener('click', function () {
-        openGallery(trigger.dataset.gallerySet, Number(trigger.dataset.galleryIndex));
-      });
+    document.addEventListener('click', function (event) {
+      var trigger = event.target.closest('[data-gallery-set]');
+      if (!trigger) return;
+      openGallery(trigger.dataset.gallerySet, Number(trigger.dataset.galleryIndex));
     });
 
     galleryModal.querySelectorAll('[data-gallery-close]').forEach(function (el) {
