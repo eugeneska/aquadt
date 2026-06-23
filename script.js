@@ -67,6 +67,8 @@
     {
       title: 'Псевдоморе',
       image: 'img/styles/1.webp',
+      width: 1486,
+      height: 618,
       desc: 'Яркая и\u00a0декоративная эстетика морского рифа в\u00a0пресной воде\u00a0— идеальный баланс между эффектностью и\u00a0простотой обслуживания.',
       features: [
         'Яркие рыбки',
@@ -78,6 +80,8 @@
     {
       title: 'Природный стиль',
       image: 'img/styles/2.webp',
+      width: 1120,
+      height: 840,
       desc: 'Аквариум, вдохновлённый природными ландшафтами\u00a0— спокойная эстетика живой природы для гармоничного интерьера.',
       features: [
         'Натуральные коряги',
@@ -89,6 +93,8 @@
     {
       title: 'Hardscape',
       image: 'img/styles/3.webp',
+      width: 826,
+      height: 400,
       desc: 'Строгая композиция, где главную роль играет структура ландшафта\u00a0— минималистичный и\u00a0выразительный интерьерный акцент.',
       features: [
         'Камни, коряги, грунт',
@@ -100,6 +106,8 @@
     {
       title: 'Морской стиль',
       image: 'img/styles/4.webp',
+      width: 826,
+      height: 400,
       desc: 'Премиальный вариант с\u00a0атмосферой настоящего кораллового рифа\u00a0— для тех, кто хочет максимально впечатляющий аквариум.',
       features: [
         'Коралловый риф',
@@ -111,6 +119,8 @@
     {
       title: 'Японский стиль с живыми растениями',
       image: 'img/styles/5.webp',
+      width: 826,
+      height: 400,
       desc: 'Акваскейп как цельная подводная композиция\u00a0— гармония, баланс и\u00a0философия Nature Aquarium в\u00a0вашем интерьере.',
       features: [
         'Подводный сад',
@@ -249,6 +259,10 @@
       window.setTimeout(function () {
         styleImage.src = data.image;
         styleImage.alt = data.title;
+        if (data.width && data.height) {
+          styleImage.setAttribute('width', String(data.width));
+          styleImage.setAttribute('height', String(data.height));
+        }
         styleImage.classList.remove('decoration-styles__image--fade');
 
         if (styleTitle) {
@@ -521,12 +535,166 @@
   var galleryIndex = 0;
   var galleryTouchStartX = 0;
   var galleryTouchDeltaX = 0;
-  var worksMoreCount = document.getElementById('works-more-count');
-  var worksGalleryStartIndex = 11;
 
-  if (gallerySets.works && worksMoreCount) {
-    var worksMoreTotal = Math.max(0, gallerySets.works.length - worksGalleryStartIndex);
-    worksMoreCount.textContent = String(worksMoreTotal);
+  var worksCoverflow = document.getElementById('works-coverflow');
+  var worksCoverflowTrack = document.getElementById('works-coverflow-track');
+  var worksCoverflowViewport = document.getElementById('works-coverflow-viewport');
+  var worksCoverflowPrev = document.getElementById('works-coverflow-prev');
+  var worksCoverflowNext = document.getElementById('works-coverflow-next');
+
+  if (worksCoverflow && worksCoverflowTrack && gallerySets.works) {
+    var worksCoverflowIndex = 0;
+    var worksCoverflowSlides = [];
+    var worksCoverflowTouchStartX = 0;
+    var worksCoverflowTouchDeltaX = 0;
+    var worksCoverflowScales = [1, 0.8, 0.66, 0.54];
+    var worksCoverflowOpacities = [1, 0.78, 0.55, 0.38];
+
+    function getWorksCoverflowVisibleRange() {
+      return window.innerWidth < 768 ? 1 : 3;
+    }
+
+    function getWorksCoverflowSlideStyle(offset) {
+      var distance = Math.abs(offset);
+      var range = getWorksCoverflowVisibleRange();
+      var scaleIndex = Math.min(distance, worksCoverflowScales.length - 1);
+
+      if (distance > range) {
+        return { hidden: true };
+      }
+
+      return {
+        hidden: false,
+        offset: offset,
+        scale: worksCoverflowScales[scaleIndex],
+        opacity: worksCoverflowOpacities[scaleIndex],
+        z: 10 - distance
+      };
+    }
+
+    function buildWorksCoverflow() {
+      worksCoverflowTrack.innerHTML = '';
+      worksCoverflowSlides = [];
+
+      gallerySets.works.forEach(function (item, index) {
+        var slide = document.createElement('button');
+        slide.type = 'button';
+        slide.className = 'works-gallery__slide';
+        slide.dataset.gallerySet = 'works';
+        slide.dataset.galleryIndex = String(index);
+        slide.setAttribute('aria-label', 'Фото ' + (index + 1) + ' из ' + gallerySets.works.length);
+
+        var img = document.createElement('img');
+        img.src = item.src;
+        img.alt = item.alt;
+        img.loading = index < 7 ? 'eager' : 'lazy';
+        img.decoding = 'async';
+        img.width = 800;
+        img.height = 600;
+        slide.appendChild(img);
+
+        slide.addEventListener('click', function (event) {
+          if (index !== worksCoverflowIndex) {
+            event.stopImmediatePropagation();
+            goWorksCoverflow(index);
+          }
+        });
+
+        worksCoverflowTrack.appendChild(slide);
+        worksCoverflowSlides.push(slide);
+      });
+    }
+
+    function updateWorksCoverflow() {
+      var range = getWorksCoverflowVisibleRange();
+      var maxIndex = gallerySets.works.length - 1;
+
+      worksCoverflowSlides.forEach(function (slide, index) {
+        var offset = index - worksCoverflowIndex;
+        var style = getWorksCoverflowSlideStyle(offset);
+
+        slide.classList.toggle('works-gallery__slide--active', offset === 0);
+        slide.classList.toggle('works-gallery__slide--hidden', style.hidden);
+        slide.setAttribute('aria-hidden', style.hidden ? 'true' : 'false');
+        slide.tabIndex = offset === 0 ? 0 : -1;
+
+        if (style.hidden) {
+          slide.style.removeProperty('--slide-offset');
+          slide.style.removeProperty('--slide-scale');
+          slide.style.removeProperty('--slide-opacity');
+          slide.style.removeProperty('--slide-z');
+          return;
+        }
+
+        slide.style.setProperty('--slide-offset', String(style.offset));
+        slide.style.setProperty('--slide-scale', String(style.scale));
+        slide.style.setProperty('--slide-opacity', String(style.opacity));
+        slide.style.setProperty('--slide-z', String(style.z));
+      });
+
+      if (worksCoverflowPrev) {
+        worksCoverflowPrev.disabled = worksCoverflowIndex === 0;
+      }
+      if (worksCoverflowNext) {
+        worksCoverflowNext.disabled = worksCoverflowIndex >= maxIndex;
+      }
+    }
+
+    function goWorksCoverflow(index) {
+      worksCoverflowIndex = Math.max(0, Math.min(index, gallerySets.works.length - 1));
+      updateWorksCoverflow();
+    }
+
+    if (worksCoverflowPrev) {
+      worksCoverflowPrev.addEventListener('click', function () {
+        goWorksCoverflow(worksCoverflowIndex - 1);
+      });
+    }
+
+    if (worksCoverflowNext) {
+      worksCoverflowNext.addEventListener('click', function () {
+        goWorksCoverflow(worksCoverflowIndex + 1);
+      });
+    }
+
+    if (worksCoverflowViewport) {
+      worksCoverflowViewport.addEventListener('touchstart', function (event) {
+        if (!event.changedTouches.length) return;
+        worksCoverflowTouchStartX = event.changedTouches[0].clientX;
+        worksCoverflowTouchDeltaX = 0;
+      }, { passive: true });
+
+      worksCoverflowViewport.addEventListener('touchmove', function (event) {
+        if (!event.changedTouches.length) return;
+        worksCoverflowTouchDeltaX = event.changedTouches[0].clientX - worksCoverflowTouchStartX;
+      }, { passive: true });
+
+      worksCoverflowViewport.addEventListener('touchend', function () {
+        if (Math.abs(worksCoverflowTouchDeltaX) < 40) return;
+        if (worksCoverflowTouchDeltaX < 0) {
+          goWorksCoverflow(worksCoverflowIndex + 1);
+        } else {
+          goWorksCoverflow(worksCoverflowIndex - 1);
+        }
+        worksCoverflowTouchDeltaX = 0;
+      });
+    }
+
+    worksCoverflow.addEventListener('keydown', function (event) {
+      if (event.key === 'ArrowLeft') {
+        event.preventDefault();
+        goWorksCoverflow(worksCoverflowIndex - 1);
+      }
+      if (event.key === 'ArrowRight') {
+        event.preventDefault();
+        goWorksCoverflow(worksCoverflowIndex + 1);
+      }
+    });
+
+    window.addEventListener('resize', updateWorksCoverflow);
+
+    buildWorksCoverflow();
+    updateWorksCoverflow();
   }
 
   if (galleryModal && galleryTrack && galleryViewport) {
