@@ -815,8 +815,12 @@
   var requestModalPhone = document.getElementById('request-modal-phone');
   var requestModalName = document.getElementById('request-modal-name');
   var requestToast = document.getElementById('request-toast');
+  var requestToastText = requestToast ? requestToast.querySelector('.request-toast__text') : null;
   var requestToastClose = document.getElementById('request-toast-close');
   var requestToastTimer;
+  var requestEndpoint = 'api/send-request.php';
+  var requestSuccessMessage = 'Спасибо! Мы получили вашу заявку и\u00a0свяжемся с\u00a0вами для консультации.';
+  var requestErrorMessage = 'Не удалось отправить заявку. Попробуйте позже или позвоните нам.';
   var phonePrefix = '+375 (';
 
   function extractPhoneDigits(value) {
@@ -893,30 +897,94 @@
 
   function hideRequestToast() {
     if (!requestToast) return;
-    requestToast.classList.remove('request-toast--visible');
+    requestToast.classList.remove('request-toast--visible', 'request-toast--error');
     window.setTimeout(function () {
       requestToast.hidden = true;
     }, 350);
   }
 
-  function showRequestToast() {
+  function showRequestToast(message, isError) {
     if (!requestToast) return;
     window.clearTimeout(requestToastTimer);
+
+    if (requestToastText) {
+      requestToastText.textContent = message || requestSuccessMessage;
+    }
+
+    requestToast.classList.toggle('request-toast--error', !!isError);
     requestToast.hidden = false;
     window.requestAnimationFrame(function () {
       requestToast.classList.add('request-toast--visible');
     });
-    requestToastTimer = window.setTimeout(hideRequestToast, 6000);
+    requestToastTimer = window.setTimeout(hideRequestToast, isError ? 8000 : 6000);
+  }
+
+  function getFormFieldValue(form, name) {
+    var field = form.elements[name];
+    if (!field) return '';
+    return typeof field.value === 'string' ? field.value.trim() : '';
+  }
+
+  function setFormSubmitting(form, isSubmitting) {
+    var submitButton = form.querySelector('[type="submit"]');
+    if (!submitButton) return;
+
+    submitButton.disabled = isSubmitting;
+    submitButton.setAttribute('aria-busy', isSubmitting ? 'true' : 'false');
+  }
+
+  function submitRequestForm(form, source) {
+    if (!form.reportValidity()) {
+      return Promise.resolve(false);
+    }
+
+    var payload = {
+      name: getFormFieldValue(form, 'name'),
+      phone: getFormFieldValue(form, 'phone'),
+      city: getFormFieldValue(form, 'city'),
+      interest: getFormFieldValue(form, 'interest'),
+      comment: getFormFieldValue(form, 'comment'),
+      source: source
+    };
+
+    setFormSubmitting(form, true);
+
+    return fetch(requestEndpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    })
+      .then(function (response) {
+        return response.json().catch(function () {
+          return { ok: false };
+        }).then(function (data) {
+          if (!response.ok && !data.ok) {
+            throw new Error(data.error || requestErrorMessage);
+          }
+          return data;
+        });
+      })
+      .then(function (data) {
+        form.reset();
+        showRequestToast(data.warning || requestSuccessMessage, false);
+        return true;
+      })
+      .catch(function () {
+        showRequestToast(requestErrorMessage, true);
+        return false;
+      })
+      .finally(function () {
+        setFormSubmitting(form, false);
+      });
   }
 
   if (requestForm && requestToast) {
     requestForm.addEventListener('submit', function (event) {
       event.preventDefault();
-
-      if (!requestForm.reportValidity()) return;
-
-      requestForm.reset();
-      showRequestToast();
+      submitRequestForm(requestForm, 'page');
     });
   }
 
@@ -977,11 +1045,11 @@
     requestModalForm.addEventListener('submit', function (event) {
       event.preventDefault();
 
-      if (!requestModalForm.reportValidity()) return;
-
-      requestModalForm.reset();
-      closeRequestModal();
-      showRequestToast();
+      submitRequestForm(requestModalForm, 'modal').then(function (sent) {
+        if (sent) {
+          closeRequestModal();
+        }
+      });
     });
   }
 
