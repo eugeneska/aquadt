@@ -32,6 +32,8 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 body {
@@ -40,7 +42,8 @@ body {
   color: var(--text-primary);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  overflow: visible;
+  min-height: 100%;
 }
 
 img {
@@ -615,6 +618,28 @@ ul {
 
   .hero {
     position: relative;
+  }
+
+  .hero.hero--released {
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .services {
+    margin-top: 0;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .hero-pin {
+    height: auto;
+  }
+
+  .hero {
+    position: relative;
+    height: auto;
+    min-height: 100svh;
+    isolation: auto;
   }
 
   .hero.hero--released {
@@ -1703,7 +1728,7 @@ ul {
   position: relative;
   height: clamp(200px, 28vw, 360px);
   overflow: hidden;
-  touch-action: pan-y;
+  touch-action: auto;
   user-select: none;
 }
 
@@ -3097,24 +3122,69 @@ ul {
 @media (max-width: 960px) {
   html {
     overflow-x: hidden;
+    overflow-y: scroll;
+    scroll-behavior: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   body {
-    overflow-x: hidden;
+    overflow: visible;
     width: 100%;
+    min-height: 100%;
+    touch-action: pan-y pinch-zoom;
   }
 
   .header,
   section,
-  .footer {
-    max-width: 100%;
-    overflow-x: clip;
-  }
-
-  .hero-pin,
-  .hero {
+  .footer,
+  .hero-pin {
     max-width: 100%;
     overflow: visible;
+  }
+
+  .hero-pin {
+    height: auto;
+  }
+
+  .hero {
+    position: relative;
+    max-width: 100%;
+    height: auto;
+    min-height: 100svh;
+    isolation: auto;
+  }
+
+  .hero.hero--released {
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .services {
+    margin-top: 0;
+  }
+
+  .maintenance__content,
+  .why-us__intro,
+  .request__intro {
+    position: static;
+    top: auto;
+  }
+
+  .work-stages__track-wrap {
+    overflow: visible;
+  }
+
+  .species__viewport {
+    overflow: visible;
+    touch-action: auto;
+  }
+
+  .header__nav:not(.header__nav--open) {
+    pointer-events: none;
+  }
+
+  .header__nav--open {
+    pointer-events: auto;
   }
 
   :root {
@@ -3226,7 +3296,7 @@ ul {
   .hero {
     align-items: flex-end;
     min-height: 100svh;
-    height: 100svh;
+    height: auto;
   }
 
   .hero__bg-image {
@@ -3474,6 +3544,7 @@ ul {
     grid-column: 1;
     grid-row: 1;
     height: clamp(180px, 52vw, 260px);
+    touch-action: pan-y pinch-zoom;
   }
 
   .works-gallery__arrow {
@@ -3551,7 +3622,6 @@ ul {
   .work-stages {
     --work-stages-circle: 48px;
     padding: 56px 0 64px;
-    overflow-x: clip;
   }
 
   .work-stages__header {
@@ -3559,7 +3629,6 @@ ul {
   }
 
   .work-stages__track-wrap {
-    overflow-x: clip;
     padding-bottom: 0;
   }
 
@@ -3762,7 +3831,7 @@ ul {
   .container {
     padding: 0 16px;
     max-width: 100%;
-    overflow-x: clip;
+    min-width: 0;
   }
 
   .header__logo-img {
@@ -3813,11 +3882,12 @@ ul {
 
   .species__viewport {
     overflow-x: auto;
-    overflow-y: visible;
+    overflow-y: hidden;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
-    touch-action: pan-x pan-y;
+    touch-action: pan-x pan-y pinch-zoom;
     overscroll-behavior-x: contain;
+    overscroll-behavior-y: auto;
     scrollbar-width: none;
   }
 
