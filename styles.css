@@ -1319,6 +1319,23 @@ ul {
   line-height: 1.35;
 }
 
+.decoration-styles__mobile-list {
+  display: none;
+}
+
+.decoration-styles__card {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+
+.decoration-styles__card:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
 @media (min-width: 961px) {
   .decoration-styles-pin .decoration-styles {
     position: sticky;
@@ -3580,43 +3597,25 @@ ul {
     touch-action: manipulation;
   }
 
-  .decoration-styles__tabs {
+  .decoration-styles__select,
+  .decoration-styles__tabs,
+  .decoration-styles__panel {
     display: none;
   }
 
-  .decoration-styles__select {
-    display: block;
+  .decoration-styles__mobile-list {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .decoration-styles__card .decoration-styles__image-wrap {
+    min-height: clamp(220px, 52vw, 320px);
+  }
+
+  .decoration-styles__card .decoration-styles__cta {
     width: 100%;
-    font-family: var(--font);
-    font-size: 15px;
-    font-weight: 500;
-    color: var(--text-primary);
-    background: rgba(255, 248, 240, 0.03);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    padding: 14px 44px 14px 16px;
-    appearance: none;
-    cursor: pointer;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%23b0aaa4' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 16px center;
-    transition: border-color var(--transition), background var(--transition), box-shadow var(--transition);
-  }
-
-  .decoration-styles__select:hover {
-    border-color: rgba(255, 248, 240, 0.12);
-  }
-
-  .decoration-styles__select:focus {
-    outline: none;
-    border-color: var(--border-accent);
-    background-color: rgba(232, 120, 30, 0.04);
-    box-shadow: 0 0 0 3px rgba(232, 120, 30, 0.08);
-  }
-
-  .decoration-styles__select option {
-    color: var(--text-primary);
-    background: var(--bg-card);
+    white-space: normal;
   }
 
   .work-stages {

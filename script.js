@@ -167,10 +167,84 @@
   var styleFeatures = document.getElementById('style-features');
   var stylePanel = document.getElementById('style-panel');
   var styleContent = document.querySelector('.decoration-styles__content');
+  var styleMobileList = document.getElementById('style-mobile-list');
   var stylesPin = document.getElementById('styles-pin');
   var currentStyleIndex = 0;
   var stylesPinBreakpoint = window.matchMedia('(min-width: 961px)');
   var setActiveStyle = function () {};
+
+  function buildStyleMobileList() {
+    if (!styleMobileList) return;
+
+    styleMobileList.innerHTML = '';
+
+    styleData.forEach(function (data) {
+      var card = document.createElement('article');
+      card.className = 'decoration-styles__card';
+
+      var imageWrap = document.createElement('div');
+      imageWrap.className = 'decoration-styles__image-wrap';
+
+      var image = document.createElement('img');
+      image.className = 'decoration-styles__image';
+      image.src = data.image;
+      image.alt = data.title;
+      image.loading = 'lazy';
+      image.width = data.width;
+      image.height = data.height;
+      image.decoding = 'async';
+      imageWrap.appendChild(image);
+
+      var content = document.createElement('div');
+      content.className = 'decoration-styles__content';
+
+      var title = document.createElement('h3');
+      title.className = 'decoration-styles__panel-title';
+      title.textContent = data.title;
+
+      var desc = document.createElement('p');
+      desc.className = 'decoration-styles__desc';
+      desc.textContent = data.desc;
+
+      var featuresTitle = document.createElement('p');
+      featuresTitle.className = 'decoration-styles__features-title';
+      featuresTitle.textContent = 'Визуальные характеристики';
+
+      var features = document.createElement('ul');
+      features.className = 'decoration-styles__features';
+      data.features.forEach(function (feature) {
+        var li = document.createElement('li');
+        li.textContent = feature;
+        features.appendChild(li);
+      });
+
+      var cta = document.createElement('a');
+      cta.href = 'https://www.instagram.com/1aquadt.by';
+      cta.target = '_blank';
+      cta.rel = 'noopener noreferrer';
+      cta.className = 'btn btn--outline btn--lg decoration-styles__cta';
+
+      var ctaIcon = document.createElement('img');
+      ctaIcon.src = 'img/inst.svg';
+      ctaIcon.alt = '';
+      ctaIcon.className = 'btn__icon';
+      ctaIcon.width = 22;
+      ctaIcon.height = 22;
+      ctaIcon.setAttribute('aria-hidden', 'true');
+      cta.appendChild(ctaIcon);
+      cta.appendChild(document.createTextNode('Посмотреть примеры работ в Instagram'));
+
+      content.appendChild(title);
+      content.appendChild(desc);
+      content.appendChild(featuresTitle);
+      content.appendChild(features);
+      content.appendChild(cta);
+
+      card.appendChild(imageWrap);
+      card.appendChild(content);
+      styleMobileList.appendChild(card);
+    });
+  }
 
   function isStylesPinActive() {
     return Boolean(stylesPin && stylesPinBreakpoint.matches && !reduceMotion.matches);
@@ -250,6 +324,8 @@
   }
 
   if (styleImage && styleDesc && styleFeatures && (styleTabs.length || styleSelect)) {
+    buildStyleMobileList();
+
     if (styleSelect) {
       styleData.forEach(function (data, i) {
         var option = document.createElement('option');
