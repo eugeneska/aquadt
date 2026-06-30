@@ -625,6 +625,8 @@
       { src: 'img/gallery/31.webp', alt: 'Аквариум AquaDT — проект 31' },
       { src: 'img/gallery/32.webp', alt: 'Аквариум AquaDT — проект 32' },
       { src: 'img/gallery/33.webp', alt: 'Аквариум AquaDT — проект 33' },
+      { src: 'img/gallery/34.webp', alt: 'Аквариум AquaDT — проект 34' },
+      { src: 'img/gallery/35.webp', alt: 'Аквариум AquaDT — проект 35' },
     ]
   };
 
