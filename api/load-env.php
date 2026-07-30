@@ -1,6 +1,6 @@
 <?php
 
-function load_env(string $path): void
+function load_env($path)
 {
     if (!is_readable($path)) {
         return;
@@ -39,7 +39,7 @@ function load_env(string $path): void
     }
 }
 
-function env(string $key, ?string $default = null): ?string
+function env($key, $default = null)
 {
     $value = getenv($key);
     if ($value === false) {

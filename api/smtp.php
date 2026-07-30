@@ -1,6 +1,6 @@
 <?php
 
-function smtp_read_response($socket): string
+function smtp_read_response($socket)
 {
     $response = '';
 
@@ -14,7 +14,7 @@ function smtp_read_response($socket): string
     return $response;
 }
 
-function smtp_expect($socket, array $codes): bool
+function smtp_expect($socket, $codes)
 {
     $response = smtp_read_response($socket);
     $code = (int) substr($response, 0, 3);
@@ -22,21 +22,21 @@ function smtp_expect($socket, array $codes): bool
     return in_array($code, $codes, true);
 }
 
-function smtp_command($socket, string $command, array $codes): bool
+function smtp_command($socket, $command, $codes)
 {
     fwrite($socket, $command . "\r\n");
 
     return smtp_expect($socket, $codes);
 }
 
-function smtp_send_mail(array $config, string $to, string $subject, string $body): bool
+function smtp_send_mail($config, $to, $subject, $body)
 {
-    $host = $config['host'] ?? '';
-    $port = (int) ($config['port'] ?? 587);
-    $user = $config['user'] ?? '';
-    $pass = $config['pass'] ?? '';
-    $from = $config['from'] ?? $user;
-    $fromName = $config['from_name'] ?? 'AquaDT';
+    $host = isset($config['host']) ? $config['host'] : '';
+    $port = (int) (isset($config['port']) ? $config['port'] : 587);
+    $user = isset($config['user']) ? $config['user'] : '';
+    $pass = isset($config['pass']) ? $config['pass'] : '';
+    $from = isset($config['from']) ? $config['from'] : $user;
+    $fromName = isset($config['from_name']) ? $config['from_name'] : 'AquaDT';
 
     if ($host === '' || $user === '' || $pass === '' || $from === '' || $to === '') {
         return false;
@@ -56,18 +56,18 @@ function smtp_send_mail(array $config, string $to, string $subject, string $body
 
     stream_set_timeout($socket, 20);
 
-    if (!smtp_expect($socket, [220])) {
+    if (!smtp_expect($socket, array(220))) {
         fclose($socket);
         return false;
     }
 
     $ehloHost = 'localhost';
-    if (!smtp_command($socket, 'EHLO ' . $ehloHost, [250])) {
+    if (!smtp_command($socket, 'EHLO ' . $ehloHost, array(250))) {
         fclose($socket);
         return false;
     }
 
-    if (!smtp_command($socket, 'STARTTLS', [220])) {
+    if (!smtp_command($socket, 'STARTTLS', array(220))) {
         fclose($socket);
         return false;
     }
@@ -82,61 +82,61 @@ function smtp_send_mail(array $config, string $to, string $subject, string $body
         return false;
     }
 
-    if (!smtp_command($socket, 'EHLO ' . $ehloHost, [250])) {
+    if (!smtp_command($socket, 'EHLO ' . $ehloHost, array(250))) {
         fclose($socket);
         return false;
     }
 
-    if (!smtp_command($socket, 'AUTH LOGIN', [334])) {
+    if (!smtp_command($socket, 'AUTH LOGIN', array(334))) {
         fclose($socket);
         return false;
     }
 
-    if (!smtp_command($socket, base64_encode($user), [334])) {
+    if (!smtp_command($socket, base64_encode($user), array(334))) {
         fclose($socket);
         return false;
     }
 
-    if (!smtp_command($socket, base64_encode($pass), [235])) {
+    if (!smtp_command($socket, base64_encode($pass), array(235))) {
         fclose($socket);
         return false;
     }
 
-    if (!smtp_command($socket, 'MAIL FROM:<' . $from . '>', [250])) {
+    if (!smtp_command($socket, 'MAIL FROM:<' . $from . '>', array(250))) {
         fclose($socket);
         return false;
     }
 
-    if (!smtp_command($socket, 'RCPT TO:<' . $to . '>', [250, 251])) {
+    if (!smtp_command($socket, 'RCPT TO:<' . $to . '>', array(250, 251))) {
         fclose($socket);
         return false;
     }
 
-    if (!smtp_command($socket, 'DATA', [354])) {
+    if (!smtp_command($socket, 'DATA', array(354))) {
         fclose($socket);
         return false;
     }
 
     $encodedSubject = '=?UTF-8?B?' . base64_encode($subject) . '?=';
     $encodedFromName = '=?UTF-8?B?' . base64_encode($fromName) . '?=';
-    $headers = [
+    $headers = array(
         'From: ' . $encodedFromName . ' <' . $from . '>',
         'To: <' . $to . '>',
         'Subject: ' . $encodedSubject,
         'MIME-Version: 1.0',
         'Content-Type: text/plain; charset=UTF-8',
         'Content-Transfer-Encoding: 8bit',
-    ];
+    );
 
     $message = implode("\r\n", $headers) . "\r\n\r\n" . $body . "\r\n.";
     fwrite($socket, $message . "\r\n");
 
-    if (!smtp_expect($socket, [250])) {
+    if (!smtp_expect($socket, array(250))) {
         fclose($socket);
         return false;
     }
 
-    smtp_command($socket, 'QUIT', [221]);
+    smtp_command($socket, 'QUIT', array(221));
     fclose($socket);
 
     return true;

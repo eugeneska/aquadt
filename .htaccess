@@ -4,9 +4,5 @@
 
 DirectoryIndex index.html
 
-RewriteEngine On
-RewriteBase /landing/
-RewriteRule ^$ index.html [L]
-
 AddDefaultCharset UTF-8
 Options -Indexes
