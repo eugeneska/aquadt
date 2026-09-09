@@ -462,7 +462,7 @@ ul {
 .hero-pin {
   position: relative;
   height: 200vh;
-  height: 200svh;
+  min-height: 200vh;
 }
 
 .hero {
@@ -473,9 +473,7 @@ ul {
   width: 100%;
   z-index: 1;
   height: 100vh;
-  height: 100svh;
   min-height: 100vh;
-  min-height: 100svh;
   display: flex;
   align-items: flex-end;
   padding-top: var(--header-height);
@@ -710,28 +708,6 @@ ul {
   }
 }
 
-@media (hover: none) and (pointer: coarse) {
-  .hero-pin {
-    height: auto;
-  }
-
-  .hero {
-    position: relative;
-    height: auto;
-    min-height: 100svh;
-    isolation: auto;
-  }
-
-  .hero.hero--released {
-    visibility: visible;
-    pointer-events: auto;
-  }
-
-  .services {
-    margin-top: 0;
-  }
-}
-
 @keyframes pulse {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.4; }
@@ -758,7 +734,6 @@ ul {
   position: relative;
   z-index: 2;
   margin-top: -100vh;
-  margin-top: -100svh;
   padding: 96px 0 104px;
   background: var(--bg-secondary);
   border-radius: clamp(20px, 3vw, 32px) clamp(20px, 3vw, 32px) 0 0;
@@ -3248,25 +3223,8 @@ ul {
     overflow: visible;
   }
 
-  .hero-pin {
-    height: auto;
-  }
-
   .hero {
-    position: relative;
     max-width: 100%;
-    height: auto;
-    min-height: 100svh;
-    isolation: auto;
-  }
-
-  .hero.hero--released {
-    visibility: visible;
-    pointer-events: auto;
-  }
-
-  .services {
-    margin-top: 0;
   }
 
   .maintenance__content,
@@ -3412,8 +3370,6 @@ ul {
 
   .hero {
     align-items: flex-end;
-    min-height: 100svh;
-    height: auto;
   }
 
   .hero__bg-image {

@@ -14,7 +14,7 @@
   function updateHeroParallax() {
     if (!hero || !heroPin) return;
 
-    if (reduceMotion.matches || heroMobileBreakpoint.matches) {
+    if (reduceMotion.matches) {
       hero.classList.remove('hero--released');
       if (heroInner) {
         heroInner.style.opacity = '';
