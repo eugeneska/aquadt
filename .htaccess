@@ -1,5 +1,5 @@
 # AquaDT — корень после переноса: лендинг + 301 на /old/
-
+  
 <Files ".env">
   Require all denied
 </Files>
@@ -18,6 +18,9 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 # www → без www
 RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
 RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+# index.html → канонический корень
+RewriteRule ^index\.html$ / [R=301,L]
 
 # Убрать завершающий слэш (кроме корня и реальных директорий)
 RewriteCond %{REQUEST_FILENAME} !-d
