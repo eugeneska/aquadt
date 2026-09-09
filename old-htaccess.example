@@ -1,0 +1,12 @@
+AddDefaultCharset UTF-8
+Options All -Indexes
+DirectoryIndex index.php
+
+RewriteEngine On
+RewriteBase /old/
+
+RewriteRule ^index\.php$ - [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?ws_path=$1 [L,QSA]
