@@ -22,6 +22,20 @@
   <link rel="preload" as="font" type="font/woff2" href="fonts/cormorant-cyrillic.woff2" crossorigin>
   <link rel="preload" href="styles.css?v=20260909" as="style">
   <link rel="stylesheet" href="styles.css?v=20260909">
+  <!-- Yandex.Metrika counter -->
+  <script type="text/javascript">
+    window.dataLayer = window.dataLayer || [];
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=112425138', 'ym');
+
+    ym(112425138, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+  </script>
+  <noscript><div><img src="https://mc.yandex.ru/watch/112425138" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+  <!-- /Yandex.Metrika counter -->
 </head>
 <body>
 
@@ -999,20 +1013,13 @@
     </svg>
   </button>
 
-  <script src="script.js?v=20260909" defer></script>
+  <script src="script.js?v=20260909c" defer></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    window.ym = window.ym || function () { (window.ym.a = window.ym.a || []).push(arguments); };
-    window.ym.l = 1 * new Date();
     function loadAnalytics() {
       if (window.__analyticsLoaded) return;
       window.__analyticsLoaded = true;
-      ym(99367189, 'init', {webvisor:true, clickmap:true, accurateTrackBounce:true, trackLinks:true});
-      var ymScript = document.createElement('script');
-      ymScript.async = true;
-      ymScript.src = 'https://mc.yandex.ru/metrika/tag.js';
-      document.head.appendChild(ymScript);
       var ga = document.createElement('script');
       ga.async = true;
       ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-7N2G4D6KNZ';
@@ -1030,6 +1037,5 @@
       });
     }
   </script>
-  <noscript><div><img src="https://mc.yandex.ru/watch/99367189" style="position:absolute; left:-9999px;" alt=""></div></noscript>
 </body>
 </html>

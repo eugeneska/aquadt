@@ -972,6 +972,37 @@
   var requestSuccessMessage = 'Спасибо! Мы получили вашу заявку и\u00a0свяжемся с\u00a0вами для консультации.';
   var requestErrorMessage = 'Не удалось отправить заявку. Попробуйте позже или позвоните нам.';
   var phonePrefix = '+375 (';
+  var YM_COUNTER_ID = 112425138;
+
+  function trackGoal(goal, params) {
+    if (typeof ym === 'function') {
+      ym(YM_COUNTER_ID, 'reachGoal', goal, params);
+    }
+    if (typeof gtag === 'function') {
+      gtag('event', goal, params || {});
+    }
+  }
+
+  document.addEventListener('click', function (event) {
+    var link = event.target.closest('a');
+    if (!link) return;
+
+    var href = (link.getAttribute('href') || '').trim();
+
+    if (href.indexOf('tel:') === 0) {
+      trackGoal('phone_click');
+      return;
+    }
+
+    if (href.indexOf('t.me/') !== -1 || href.indexOf('telegram.me/') !== -1) {
+      trackGoal('telegram_click');
+      return;
+    }
+
+    if (href === '#request') {
+      trackGoal('cta_request');
+    }
+  });
 
   function extractPhoneDigits(value) {
     var digits = value.replace(/\D/g, '');
@@ -1120,6 +1151,7 @@
       .then(function (data) {
         form.reset();
         showRequestToast(data.warning || requestSuccessMessage, false);
+        trackGoal('form_submit', { source: source });
         return true;
       })
       .catch(function () {
@@ -1187,6 +1219,7 @@
 
   if (phoneFab) {
     phoneFab.addEventListener('click', function () {
+      trackGoal('cta_request');
       openRequestModal(true);
     });
   }
