@@ -95,8 +95,9 @@
     {
       title: 'Псевдоморе',
       image: 'img/styles/1.webp',
-      width: 1486,
-      height: 618,
+      srcset: 'img/styles/1-640.webp 640w, img/styles/1.webp 960w',
+      width: 960,
+      height: 720,
       desc: 'Яркая и\u00a0декоративная эстетика морского рифа в\u00a0пресной воде\u00a0— идеальный баланс между эффектностью и\u00a0простотой обслуживания.',
       features: [
         'Яркие рыбки',
@@ -108,8 +109,9 @@
     {
       title: 'Природный стиль',
       image: 'img/styles/2.webp',
-      width: 1120,
-      height: 840,
+      srcset: 'img/styles/2-640.webp 640w, img/styles/2.webp 960w',
+      width: 960,
+      height: 720,
       desc: 'Аквариум, вдохновлённый природными ландшафтами\u00a0— спокойная эстетика живой природы для гармоничного интерьера.',
       features: [
         'Натуральные коряги',
@@ -121,8 +123,9 @@
     {
       title: 'Hardscape',
       image: 'img/styles/3.webp',
-      width: 826,
-      height: 400,
+      srcset: 'img/styles/3-640.webp 640w, img/styles/3.webp 960w',
+      width: 960,
+      height: 720,
       desc: 'Строгая композиция, где главную роль играет структура ландшафта\u00a0— минималистичный и\u00a0выразительный интерьерный акцент.',
       features: [
         'Камни, коряги, грунт',
@@ -134,8 +137,9 @@
     {
       title: 'Морской стиль',
       image: 'img/styles/4.webp',
-      width: 826,
-      height: 400,
+      srcset: 'img/styles/4-640.webp 640w, img/styles/4.webp 960w',
+      width: 960,
+      height: 720,
       desc: 'Премиальный вариант с\u00a0атмосферой настоящего кораллового рифа\u00a0— для тех, кто хочет максимально впечатляющий аквариум.',
       features: [
         'Коралловый риф',
@@ -147,8 +151,9 @@
     {
       title: 'Японский стиль с живыми растениями',
       image: 'img/styles/5.webp',
-      width: 826,
-      height: 400,
+      srcset: 'img/styles/5-640.webp 640w, img/styles/5.webp 960w',
+      width: 960,
+      height: 720,
       desc: 'Акваскейп как цельная подводная композиция\u00a0— гармония, баланс и\u00a0философия Nature Aquarium в\u00a0вашем интерьере.',
       features: [
         'Подводный сад',
@@ -188,6 +193,10 @@
       var image = document.createElement('img');
       image.className = 'decoration-styles__image';
       image.src = data.image;
+      if (data.srcset) {
+        image.srcset = data.srcset;
+        image.sizes = '(max-width: 960px) 100vw, 720px';
+      }
       image.alt = data.title;
       image.loading = 'lazy';
       image.width = data.width;
@@ -324,7 +333,20 @@
   }
 
   if (styleImage && styleDesc && styleFeatures && (styleTabs.length || styleSelect)) {
-    buildStyleMobileList();
+    if (navMobileBreakpoint.matches) {
+      buildStyleMobileList();
+    }
+
+    navMobileBreakpoint.addEventListener('change', function () {
+      if (navMobileBreakpoint.matches) {
+        if (styleMobileList && !styleMobileList.childElementCount) {
+          buildStyleMobileList();
+        }
+      } else if (styleMobileList) {
+        styleMobileList.innerHTML = '';
+        setActiveStyle(currentStyleIndex, { force: true });
+      }
+    });
 
     if (styleSelect) {
       styleData.forEach(function (data, i) {
@@ -362,6 +384,10 @@
 
       window.setTimeout(function () {
         styleImage.src = data.image;
+        if (data.srcset) {
+          styleImage.srcset = data.srcset;
+          styleImage.sizes = '(max-width: 960px) 100vw, 720px';
+        }
         styleImage.alt = data.title;
         if (data.width && data.height) {
           styleImage.setAttribute('width', String(data.width));
@@ -409,6 +435,10 @@
 
     updateStylesPinHeight();
     updateStylesScrollPin();
+
+    if (!navMobileBreakpoint.matches) {
+      setActiveStyle(0, { force: true });
+    }
 
     var stylesSection = getStylesSection();
     if (stylesSection && 'ResizeObserver' in window) {
@@ -691,12 +721,11 @@
         slide.setAttribute('aria-label', 'Фото ' + (index + 1) + ' из ' + gallerySets.works.length);
 
         var img = document.createElement('img');
-        img.src = item.src;
         img.alt = item.alt;
-        img.loading = index < 7 ? 'eager' : 'lazy';
         img.decoding = 'async';
         img.width = 800;
         img.height = 600;
+        img.loading = 'lazy';
         slide.appendChild(img);
 
         slide.addEventListener('click', function (event) {
@@ -711,11 +740,26 @@
       });
     }
 
+    function loadWorksCoverflowImage(index) {
+      var slide = worksCoverflowSlides[index];
+      var item = gallerySets.works[index];
+      if (!slide || !item) return;
+
+      var img = slide.querySelector('img');
+      if (!img || img.getAttribute('src')) return;
+      img.src = item.src;
+    }
+
     function updateWorksCoverflow() {
       var range = getWorksCoverflowVisibleRange();
       var maxIndex = gallerySets.works.length - 1;
+      var preloadRange = range + 1;
 
       worksCoverflowSlides.forEach(function (slide, index) {
+        if (Math.abs(index - worksCoverflowIndex) <= preloadRange) {
+          loadWorksCoverflowImage(index);
+        }
+
         var offset = index - worksCoverflowIndex;
         var style = getWorksCoverflowSlideStyle(offset);
 

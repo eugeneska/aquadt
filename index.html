@@ -17,31 +17,11 @@
   <meta name="yandex-verification" content="5be6df3eba057ee3">
   <meta name="google-site-verification" content="IR0F-PqukbKJXy1UzHhJ-WEsFX29Y9mg4qmrDjzyHxU">
   <link rel="icon" href="img/favicon.png" type="image/png">
-  <link rel="preload" as="image" href="img/newback.jpg" type="image/jpeg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-  <!-- Yandex.Metrika counter -->
-  <script type="text/javascript">
-    (function(m,e,t,r,i,k,a){
-      m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-      m[i].l=1*new Date();
-      for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-      k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js', 'ym');
-    ym(99367189, 'init', {webvisor:true, clickmap:true, accurateTrackBounce:true, trackLinks:true});
-  </script>
-  <noscript><div><img src="https://mc.yandex.ru/watch/99367189" style="position:absolute; left:-9999px;" alt=""></div></noscript>
-  <!-- /Yandex.Metrika counter -->
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7N2G4D6KNZ"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-7N2G4D6KNZ');
-  </script>
+  <link rel="preload" as="image" type="image/avif" href="img/newback-800.avif" imagesrcset="img/newback-800.avif 800w, img/newback.avif 1206w" imagesizes="100vw" fetchpriority="high">
+  <link rel="preload" as="font" type="font/woff2" href="fonts/manrope-cyrillic.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="fonts/cormorant-cyrillic.woff2" crossorigin>
+  <link rel="preload" href="styles.css?v=20260909" as="style">
+  <link rel="stylesheet" href="styles.css?v=20260909">
 </head>
 <body>
 
@@ -49,7 +29,10 @@
   <header class="header" id="header">
     <div class="container header__inner">
       <a href="#" class="header__logo">
-        <img src="img/newlogo.png" alt="Aqua Design Technology" class="header__logo-img" width="160" height="40">
+        <picture>
+          <source type="image/webp" srcset="img/newlogo.webp">
+          <img src="img/newlogo.png" alt="Aqua Design Technology" class="header__logo-img" width="160" height="60">
+        </picture>
       </a>
 
       <nav class="header__nav" id="nav">
@@ -59,6 +42,13 @@
           <li><a href="#service" class="header__link">Обслуживание</a></li>
           <li><a href="#stages" class="header__link">Этапы работы</a></li>
         </ul>
+        <div class="header__nav-cta">
+          <a href="tel:+375293748726" class="header__call header__call--nav">
+            <span class="header__call-label">Позвонить</span>
+            <span class="header__call-number">+375 (29) 374-87-26</span>
+          </a>
+          <a href="#request" class="btn btn--primary btn--lg">Рассчитать стоимость</a>
+        </div>
       </nav>
 
       <div class="header__actions header__actions--desktop">
@@ -96,7 +86,11 @@
   <div class="hero-pin">
   <section class="hero" id="hero">
     <div class="hero__bg" aria-hidden="true">
-      <img src="img/newback.jpg" alt="" class="hero__bg-image" loading="eager" fetchpriority="high" decoding="async">
+      <picture>
+        <source type="image/avif" srcset="img/newback-800.avif 800w, img/newback.avif 1206w" sizes="100vw">
+        <source type="image/webp" srcset="img/newback-800.webp 800w, img/newback.webp 1206w" sizes="100vw">
+        <img src="img/newback.jpg" alt="" class="hero__bg-image" width="1206" height="400" loading="eager" fetchpriority="high" decoding="async">
+      </picture>
       <div class="hero__bg-overlay"></div>
     </div>
 
@@ -257,15 +251,18 @@
         </ul>
         <a href="#request" class="btn btn--primary btn--lg custom-order__cta">Обсудить проект</a>
       </div>
-      <img
-        src="img/order.webp"
-        alt="Аквариум под заказ в интерьере"
-        class="custom-order__image"
-        loading="lazy"
-        width="720"
-        height="540"
-        decoding="async"
-      >
+      <picture>
+        <source type="image/webp" srcset="img/order-640.webp 640w, img/order.webp 960w" sizes="(max-width: 960px) 100vw, 560px">
+        <img
+          src="img/order.webp"
+          alt="Аквариум под заказ в интерьере"
+          class="custom-order__image"
+          loading="lazy"
+          width="960"
+          height="540"
+          decoding="async"
+        >
+      </picture>
     </div>
   </section>
 
@@ -430,7 +427,7 @@
 
         <div class="decoration-styles__panel" id="style-panel" role="tabpanel" aria-labelledby="style-tab-0">
           <div class="decoration-styles__image-wrap">
-            <img src="img/styles/1.webp" alt="Псевдоморе" class="decoration-styles__image" id="style-image" loading="lazy" width="1486" height="618" decoding="async">
+            <img alt="Псевдоморе" class="decoration-styles__image" id="style-image" loading="lazy" width="960" height="720" decoding="async">
           </div>
           <div class="decoration-styles__content">
             <h3 class="decoration-styles__panel-title" id="style-title">Псевдоморе</h3>
@@ -1002,6 +999,37 @@
     </svg>
   </button>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=20260909" defer></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    window.ym = window.ym || function () { (window.ym.a = window.ym.a || []).push(arguments); };
+    window.ym.l = 1 * new Date();
+    function loadAnalytics() {
+      if (window.__analyticsLoaded) return;
+      window.__analyticsLoaded = true;
+      ym(99367189, 'init', {webvisor:true, clickmap:true, accurateTrackBounce:true, trackLinks:true});
+      var ymScript = document.createElement('script');
+      ymScript.async = true;
+      ymScript.src = 'https://mc.yandex.ru/metrika/tag.js';
+      document.head.appendChild(ymScript);
+      var ga = document.createElement('script');
+      ga.async = true;
+      ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-7N2G4D6KNZ';
+      ga.onload = function () {
+        gtag('js', new Date());
+        gtag('config', 'G-7N2G4D6KNZ');
+      };
+      document.head.appendChild(ga);
+    }
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(loadAnalytics, { timeout: 4000 });
+    } else {
+      window.addEventListener('load', function () {
+        setTimeout(loadAnalytics, 1200);
+      });
+    }
+  </script>
+  <noscript><div><img src="https://mc.yandex.ru/watch/99367189" style="position:absolute; left:-9999px;" alt=""></div></noscript>
 </body>
 </html>
