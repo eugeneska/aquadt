@@ -1,5 +1,5 @@
-# AquaDT — корень после переноса: лендинг + 301 на /old/
-  
+# AquaDT — лендинг, чистые URL разделов, 301 со старых адресов
+
 <Files ".env">
   Require all denied
 </Files>
@@ -10,6 +10,10 @@ DirectoryIndex index.html index.php
 
 RewriteEngine On
 RewriteBase /
+
+# ipv6.aquadt.by → https://aquadt.by с сохранением пути (один 301, без цепочки через HTTPS того же хоста)
+RewriteCond %{HTTP_HOST} ^ipv6\. [NC]
+RewriteRule ^(.*)$ https://aquadt.by/$1 [R=301,L]
 
 # HTTPS
 RewriteCond %{HTTPS} off
@@ -22,6 +26,13 @@ RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
 # index.html → канонический корень
 RewriteRule ^index\.html$ / [R=301,L]
 
+# Кластер изготовления: прямые 301 на главную, без цепочки через /old/production
+RewriteRule ^production/?$ / [R=301,L]
+RewriteRule ^old/production/?$ / [R=301,L]
+
+# Старые адреса разделов → чистые URL (один 301)
+RewriteRule ^old/(service|stabilized-moss|hardscape|japan|decoration|pseudo-sea|sea|nature|form|payment|ponds|thanks)/?$ /$1 [R=301,L]
+
 # Убрать завершающий слэш (кроме корня и реальных директорий)
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_URI} ^(.+)/$
@@ -30,27 +41,22 @@ RewriteRule ^(.+)/$ /$1 [R=301,L]
 # Старый URL лендинга → новая главная
 RewriteRule ^landing/?$ / [R=301,L]
 
-# Постраничные 301: старые ЧПУ → /old/...
-RewriteRule ^(production)/?$ /old/$1 [R=301,L]
-RewriteRule ^(pseudo-sea)/?$ /old/$1 [R=301,L]
-RewriteRule ^(sea)/?$ /old/$1 [R=301,L]
-RewriteRule ^(nature)/?$ /old/$1 [R=301,L]
-RewriteRule ^(japan)/?$ /old/$1 [R=301,L]
-RewriteRule ^(form)/?$ /old/$1 [R=301,L]
-RewriteRule ^(payment)/?$ /old/$1 [R=301,L]
-RewriteRule ^(decoration)/?$ /old/$1 [R=301,L]
-RewriteRule ^(ponds)/?$ /old/$1 [R=301,L]
-RewriteRule ^(hardscape)/?$ /old/$1 [R=301,L]
-RewriteRule ^(service)/?$ /old/$1 [R=301,L]
-RewriteRule ^(stabilized-moss)/?$ /old/$1 [R=301,L]
-RewriteRule ^(thanks)/?$ /old/$1 [R=301,L]
+# Не индексировать технические .php посадочных
+RewriteCond %{THE_REQUEST} \s/+(service|stabilized-moss|hardscape|japan|decoration)\.php[\s?] [NC]
+RewriteRule ^ /%1 [R=301,L]
+
+# Чистые посадочные (200)
+RewriteRule ^(service|stabilized-moss|hardscape|japan|decoration)$ /$1.php [L]
+
+# Прочие постоянные страницы старого сайта: 200 на чистом URL, внутренний rewrite на CMS
+RewriteRule ^(pseudo-sea|sea|nature|form|payment|ponds|thanks)$ /old/index.php?ws_path=$1 [L,QSA]
 
 # Ресурсы и служебные пути старого сайта
-RewriteRule ^resource/(.*)$ /old/resource/$1 [R=301,L]
+RewriteRule ^resource/(.*)$ /old/resource/$1 [L]
 RewriteRule ^admin/(.*)$ /old/admin/$1 [R=301,L]
 RewriteRule ^install/(.*)$ /old/install/$1 [R=301,L]
 
-# Существующие файлы/папки лендинга и /old/ — без перезаписи
+# Существующие файлы/папки — без перезаписи
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]

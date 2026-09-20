@@ -4110,3 +4110,140 @@ ul {
     max-width: min(38vw, 140px);
   }
 }
+
+/* Inner landing pages */
+.inner-page {
+  padding-top: var(--header-height);
+}
+
+.inner-page .header {
+  background: rgba(26, 26, 26, 0.92);
+  border-bottom-color: var(--border);
+}
+
+.page-hero {
+  padding: 56px 0 40px;
+  background:
+    radial-gradient(ellipse at top left, rgba(232, 120, 30, 0.12), transparent 50%),
+    var(--bg-primary);
+}
+
+.page-hero__label {
+  color: var(--accent);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.page-hero__title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 500;
+  line-height: 1.15;
+  margin-bottom: 18px;
+}
+
+.page-hero__lead {
+  max-width: 760px;
+  color: var(--text-secondary);
+  font-size: 17px;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.page-hero__lead a,
+.page-prose a,
+.page-prose-wide a,
+.custom-order__intro a,
+.maintenance__lead a,
+.decoration-styles__subtitle a,
+.why-us__answer-inner a {
+  color: var(--accent-light);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.page-hero__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.page-section {
+  padding: 56px 0;
+}
+
+.page-section--alt {
+  background: var(--bg-secondary);
+}
+
+.page-section__title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(26px, 3vw, 36px);
+  font-weight: 500;
+  margin: 32px 0 16px;
+}
+
+.page-section__title:first-child {
+  margin-top: 0;
+}
+
+.page-section__subtitle {
+  font-size: 18px;
+  margin: 20px 0 10px;
+}
+
+.page-grid {
+  display: grid;
+  gap: 40px;
+}
+
+@media (min-width: 900px) {
+  .page-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.page-prose,
+.page-prose-wide p {
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+
+.page-prose-wide {
+  max-width: 800px;
+}
+
+.page-list {
+  margin: 0 0 18px;
+  padding-left: 20px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.page-list li + li {
+  margin-top: 6px;
+}
+
+.page-works {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 24px;
+}
+
+@media (min-width: 800px) {
+  .page-works {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.page-works img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  background: var(--bg-card);
+}

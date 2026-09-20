@@ -44,6 +44,7 @@ function interest_label($value)
     $map = array(
         'aquarium' => 'Аквариум под ключ',
         'service' => 'Обслуживание',
+        'moss' => 'Декор из стабилизированного мха',
         'redesign' => 'Переоформление',
         'repair' => 'Ремонт',
         'consultation' => 'Консультация',

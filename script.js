@@ -126,7 +126,7 @@
       srcset: 'img/styles/3-640.webp 640w, img/styles/3.webp 960w',
       width: 960,
       height: 720,
-      desc: 'Строгая композиция, где главную роль играет структура ландшафта\u00a0— минималистичный и\u00a0выразительный интерьерный акцент.',
+      desc: 'Строгая композиция, где главную роль играет структура ландшафта. Подробнее об <a href="/hardscape">аквариуме в стиле hardscape</a>.',
       features: [
         'Камни, коряги, грунт',
         'Чёткая композиция',
@@ -154,7 +154,7 @@
       srcset: 'img/styles/5-640.webp 640w, img/styles/5.webp 960w',
       width: 960,
       height: 720,
-      desc: 'Акваскейп как цельная подводная композиция\u00a0— гармония, баланс и\u00a0философия Nature Aquarium в\u00a0вашем интерьере.',
+      desc: 'Акваскейп как цельная подводная композиция. Читать о <a href="/japan">японском аквариуме с живыми растениями</a>.',
       features: [
         'Подводный сад',
         'Живые растения',
@@ -213,7 +213,7 @@
 
       var desc = document.createElement('p');
       desc.className = 'decoration-styles__desc';
-      desc.textContent = data.desc;
+      desc.innerHTML = data.desc;
 
       var featuresTitle = document.createElement('p');
       featuresTitle.className = 'decoration-styles__features-title';
@@ -399,7 +399,7 @@
           styleTitle.textContent = data.title;
         }
 
-        styleDesc.textContent = data.desc;
+        styleDesc.innerHTML = data.desc;
 
         styleFeatures.innerHTML = '';
         data.features.forEach(function (feature) {
@@ -968,7 +968,7 @@
   var requestToastText = requestToast ? requestToast.querySelector('.request-toast__text') : null;
   var requestToastClose = document.getElementById('request-toast-close');
   var requestToastTimer;
-  var requestEndpoint = 'api/send-request.php';
+  var requestEndpoint = '/api/send-request.php';
   var requestSuccessMessage = 'Спасибо! Мы получили вашу заявку и\u00a0свяжемся с\u00a0вами для консультации.';
   var requestErrorMessage = 'Не удалось отправить заявку. Попробуйте позже или позвоните нам.';
   var phonePrefix = '+375 (';

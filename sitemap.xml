@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://aquadt.by/</loc></url>
-  <url><loc>https://aquadt.by/old/</loc></url>
-  <url><loc>https://aquadt.by/old/production</loc></url>
-  <url><loc>https://aquadt.by/old/pseudo-sea</loc></url>
-  <url><loc>https://aquadt.by/old/sea</loc></url>
-  <url><loc>https://aquadt.by/old/nature</loc></url>
-  <url><loc>https://aquadt.by/old/japan</loc></url>
-  <url><loc>https://aquadt.by/old/form</loc></url>
-  <url><loc>https://aquadt.by/old/payment</loc></url>
-  <url><loc>https://aquadt.by/old/decoration</loc></url>
-  <url><loc>https://aquadt.by/old/ponds</loc></url>
-  <url><loc>https://aquadt.by/old/hardscape</loc></url>
-  <url><loc>https://aquadt.by/old/service</loc></url>
-  <url><loc>https://aquadt.by/old/stabilized-moss</loc></url>
+  <url><loc>https://aquadt.by/service</loc></url>
+  <url><loc>https://aquadt.by/stabilized-moss</loc></url>
+  <url><loc>https://aquadt.by/hardscape</loc></url>
+  <url><loc>https://aquadt.by/japan</loc></url>
+  <url><loc>https://aquadt.by/decoration</loc></url>
+  <url><loc>https://aquadt.by/pseudo-sea</loc></url>
+  <url><loc>https://aquadt.by/sea</loc></url>
+  <url><loc>https://aquadt.by/nature</loc></url>
+  <url><loc>https://aquadt.by/form</loc></url>
+  <url><loc>https://aquadt.by/payment</loc></url>
+  <url><loc>https://aquadt.by/ponds</loc></url>
 </urlset>

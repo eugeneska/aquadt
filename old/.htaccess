@@ -1,0 +1,16 @@
+AddDefaultCharset UTF-8
+Options All -Indexes
+DirectoryIndex index.php
+
+RewriteEngine On
+RewriteBase /old/
+
+# Прямые 301 на канонические URL (до rewrite CMS)
+RewriteRule ^production/?$ / [R=301,L]
+RewriteRule ^(service|stabilized-moss|hardscape|japan|decoration|pseudo-sea|sea|nature|form|payment|ponds|thanks)/?$ /$1 [R=301,L]
+
+RewriteRule ^index\.php$ - [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?ws_path=$1 [L,QSA]
