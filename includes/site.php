@@ -24,7 +24,7 @@ function site_head(array $opts)
   <meta property="og:title" content="<?php echo htmlspecialchars($title, ENT_QUOTES, 'UTF-8'); ?>">
   <meta property="og:description" content="<?php echo htmlspecialchars($description, ENT_QUOTES, 'UTF-8'); ?>">
   <meta property="og:url" content="<?php echo htmlspecialchars($canonical, ENT_QUOTES, 'UTF-8'); ?>">
-  <meta property="og:image" content="https://aquadt.by/img/newback.jpg">
+  <meta property="og:image" content="https://aquadt.by/img/hero.webp">
   <meta property="og:site_name" content="Aqua Design Technology">
   <meta property="og:locale" content="ru_RU">
   <link rel="icon" href="/img/favicon.png" type="image/png">
