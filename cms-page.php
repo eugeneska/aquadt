@@ -24,7 +24,7 @@ if ($noindex) {
     header('X-Robots-Tag: noindex, follow');
 }
 
-ob_start(function ($html) use ($canonical, $noindex) {
+ob_start(function ($html) use ($canonical, $noindex, $path) {
     if ($html === '' || stripos($html, '<head') === false) {
         return $html;
     }
@@ -58,7 +58,20 @@ ob_start(function ($html) use ($canonical, $noindex) {
         $html
     );
 
-    return is_string($updated) ? $updated : $html;
+    if (!is_string($updated)) {
+        $updated = $html;
+    }
+
+    if ($path === 'payment' && strpos($updated, '>аквариумы на заказ в Минске<') === false) {
+        $needle = 'а результаты расчета будут отправлены на ваш электронный адрес.';
+        $replacement = 'а результаты расчета будут отправлены на ваш электронный адрес. Если нужны <a href="https://aquadt.by/">аквариумы на заказ в Минске</a>, укажите город и параметры модели.';
+        $linked = str_replace($needle, $replacement, $updated);
+        if (is_string($linked)) {
+            $updated = $linked;
+        }
+    }
+
+    return $updated;
 });
 
 $oldDir = __DIR__ . '/old';

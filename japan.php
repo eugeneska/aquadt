@@ -13,7 +13,7 @@ site_header();
     <div class="container page-hero__inner">
       <p class="page-hero__label">Стиль оформления</p>
       <h1 class="page-hero__title">Японский аквариум с&nbsp;живыми растениями</h1>
-      <p class="page-hero__lead">Подводный пейзаж в духе Nature Aquarium: растения, камни, коряги и рыбы собраны в цельную композицию. Можем сделать <a href="/">аквариум на заказ в Минске</a> под ваш интерьер и уровень ухода.</p>
+      <p class="page-hero__lead">Подводный пейзаж в духе Nature Aquarium: растения, камни, коряги и рыбы собраны в цельную композицию. Делаем <a href="/">аквариумы на заказ</a> под ваш интерьер и уровень ухода.</p>
       <div class="page-hero__cta">
         <a href="#request" class="btn btn--primary btn--lg">Обсудить проект</a>
       </div>

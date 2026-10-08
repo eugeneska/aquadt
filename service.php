@@ -42,7 +42,7 @@ site_header();
     <div class="container page-hero__inner">
       <p class="page-hero__label">Сервис AquaDT</p>
       <h1 class="page-hero__title">Разовое и регулярное обслуживание аквариумов в&nbsp;Минске</h1>
-      <p class="page-hero__lead">Берём уход на&nbsp;себя, чтобы аквариум оставался чистым, здоровым и&nbsp;красивым. Работаем с&nbsp;квартирами, домами, офисами и&nbsp;коммерческими объектами по&nbsp;Минску и&nbsp;всей Беларуси. Также изготавливаем <a href="/">аквариумы на заказ и под ключ</a>.</p>
+      <p class="page-hero__lead">Берём уход на&nbsp;себя, чтобы аквариум оставался чистым, здоровым и&nbsp;красивым. Работаем с&nbsp;квартирами, домами, офисами и&nbsp;коммерческими объектами по&nbsp;Минску и&nbsp;всей Беларуси. Если нужен другой объект, можно <a href="/">заказать новый аквариум</a>.</p>
       <div class="page-hero__cta">
         <a href="#request" class="btn btn--primary btn--lg">Заказать обслуживание</a>
         <a href="tel:+375293748726" class="btn btn--outline btn--lg">+375 (29) 374-87-26</a>

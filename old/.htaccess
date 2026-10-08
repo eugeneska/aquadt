@@ -12,7 +12,8 @@ RewriteRule ^$ https://aquadt.by/ [R=301,L]
 RewriteRule ^sitemap\.xml$ https://aquadt.by/sitemap.xml [R=301,L]
 
 # Прямые 301 на канонические URL. Абсолютный https — один хоп с http и с ipv6
-RewriteRule ^production/?$ https://aquadt.by/ [R=301,L]
+RewriteRule ^landing/?$ https://aquadt.by/ [R=301,L]
+RewriteRule ^production/?$ https://aquadt.by/production [R=301,L]
 RewriteRule ^(service|stabilized-moss|hardscape|japan|decoration|pseudo-sea|sea|nature|form|payment|ponds|thanks)/?$ https://aquadt.by/$1 [R=301,L]
 
 RewriteRule ^index\.php$ - [L]

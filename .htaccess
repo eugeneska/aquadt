@@ -13,7 +13,9 @@ RewriteBase /
 
 # ipv6: устаревшие пути сразу на конечный канонический URL, без второго 301
 RewriteCond %{HTTP_HOST} ^ipv6\. [NC]
-RewriteRule ^(production|old/production)/?$ https://aquadt.by/ [R=301,L]
+RewriteRule ^old/production/?$ https://aquadt.by/production [R=301,L]
+RewriteCond %{HTTP_HOST} ^ipv6\. [NC]
+RewriteRule ^old/landing/?$ https://aquadt.by/ [R=301,L]
 RewriteCond %{HTTP_HOST} ^ipv6\. [NC]
 RewriteRule ^old/?$ https://aquadt.by/ [R=301,L]
 RewriteCond %{HTTP_HOST} ^ipv6\. [NC]
@@ -21,20 +23,27 @@ RewriteRule ^old/(service|stabilized-moss|hardscape|japan|decoration|pseudo-sea|
 RewriteCond %{HTTP_HOST} ^ipv6\. [NC]
 RewriteRule ^(index\.html|landing)/?$ https://aquadt.by/ [R=301,L]
 RewriteCond %{HTTP_HOST} ^ipv6\. [NC]
-RewriteRule ^(service|stabilized-moss|hardscape|japan|decoration)\.php$ https://aquadt.by/$1 [R=301,L]
+RewriteRule ^(service|stabilized-moss|hardscape|japan|decoration|production)\.php$ https://aquadt.by/$1 [R=301,L]
 
 # ipv6.aquadt.by → https://aquadt.by с сохранением пути (один 301)
 RewriteCond %{HTTP_HOST} ^ipv6\. [NC]
 RewriteRule ^(.*)$ https://aquadt.by/$1 [R=301,L]
 
 # Прямой 301 на конечный https, в том числе с http:// — без цепочки http→https→канонический
-RewriteRule ^(production|old/production)/?$ https://aquadt.by/ [R=301,L]
+RewriteRule ^old/production/?$ https://aquadt.by/production [R=301,L]
+RewriteRule ^old/landing/?$ https://aquadt.by/ [R=301,L]
 RewriteRule ^old/?$ https://aquadt.by/ [R=301,L]
 RewriteRule ^old/sitemap\.xml$ https://aquadt.by/sitemap.xml [R=301,L]
 RewriteRule ^old/(service|stabilized-moss|hardscape|japan|decoration|pseudo-sea|sea|nature|form|payment|ponds|thanks)/?$ https://aquadt.by/$1 [R=301,L]
 RewriteRule ^(index\.html|landing)/?$ https://aquadt.by/ [R=301,L]
 
-# HTTPS
+# http и www сразу на https://aquadt.by/путь, один хоп
+RewriteCond %{HTTP_HOST} ^www\.aquadt\.by$ [NC,OR]
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP_HOST} ^(www\.)?aquadt\.by$ [NC]
+RewriteRule ^(.*)$ https://aquadt.by/$1 [R=301,L]
+
+# HTTPS для прочих хостов
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
@@ -48,13 +57,13 @@ RewriteCond %{REQUEST_URI} ^(.+)/$
 RewriteRule ^(.+)/$ /$1 [R=301,L]
 
 # Не индексировать технические .php посадочных и обёртку CMS
-RewriteCond %{THE_REQUEST} \s/+(service|stabilized-moss|hardscape|japan|decoration)\.php[\s?] [NC]
+RewriteCond %{THE_REQUEST} \s/+(service|stabilized-moss|hardscape|japan|decoration|production)\.php[\s?] [NC]
 RewriteRule ^ /%1 [R=301,L]
 RewriteCond %{THE_REQUEST} \s/+cms-page\.php[\s?] [NC]
 RewriteRule ^cms-page\.php$ https://aquadt.by/ [R=301,L]
 
 # Чистые посадочные (200)
-RewriteRule ^(service|stabilized-moss|hardscape|japan|decoration)$ /$1.php [L]
+RewriteRule ^(service|stabilized-moss|hardscape|japan|decoration|production)$ /$1.php [L]
 
 # Прочие постоянные страницы: 200 на чистом URL, canonical дописывает обёртка
 RewriteRule ^(pseudo-sea|sea|nature|form|payment|ponds|thanks)$ /cms-page.php?ws_path=$1 [L,QSA]
