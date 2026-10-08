@@ -62,6 +62,25 @@ ob_start(function ($html) use ($canonical, $noindex, $path) {
         $updated = $html;
     }
 
+    if ($path === 'payment') {
+        $seoTitle = 'Рассчитать стоимость аквариума на заказ в Минске | AquaDT';
+        $seoDesc = 'Бесплатно рассчитаем предварительную стоимость аквариума по вашим размерам: форма, оборудование, отделка и монтаж. Заполните параметры проекта — AquaDT.';
+        $titleTag = '<title>' . htmlspecialchars($seoTitle, ENT_QUOTES, 'UTF-8') . '</title>';
+        $descTag = '<meta name="description" content="' . htmlspecialchars($seoDesc, ENT_QUOTES, 'UTF-8') . '">';
+
+        // Удаляем все существующие title и meta description, затем вставляем по одному.
+        $clean = preg_replace('#<title\b[^>]*>.*?</title>\s*#is', '', $updated);
+        if (is_string($clean)) {
+            $clean = preg_replace('/<meta\b[^>]*name=["\']description["\'][^>]*>\s*/i', '', $clean);
+        }
+        if (is_string($clean)) {
+            $withSeo = preg_replace('/<head\b[^>]*>/i', '$0' . "\n        " . $titleTag . "\n        " . $descTag, $clean, 1);
+            if (is_string($withSeo)) {
+                $updated = $withSeo;
+            }
+        }
+    }
+
     if ($path === 'payment' && strpos($updated, '>аквариумы на заказ в Минске<') === false) {
         $needle = 'а результаты расчета будут отправлены на ваш электронный адрес.';
         $replacement = 'а результаты расчета будут отправлены на ваш электронный адрес. Если нужны <a href="https://aquadt.by/">аквариумы на заказ в Минске</a>, укажите город и параметры модели.';
